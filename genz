@@ -1,0 +1,2762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>USAHA GEN Z — Enterprise Finance</title>
+  <meta name="theme-color" content="#10231b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg-app: #e4efe7; --bg-pattern: rgba(16, 185, 129, 0.16);
+      --bg-card: #ffffff; --bg-subtle: #edf5ef; --bg-hover: #dcebe0;
+      --border: #c5dccb; --border-strong: #a3c4ad;
+      --text-primary: #112218; --text-secondary: #2d4738; --text-muted: #547160;
+      --accent: #10b981; --accent-hover: #059669; --accent-soft: #d1fae5; --accent-text: #047857; --accent-on-solid: #ffffff;
+      --sage: #5f856e; --sage-soft: #d9eadf; --sage-text: #2f543e;
+      --sb-bg: #10231b; --sb-surface: #173025; --sb-hover: #204032; --sb-border: #284d3d;
+      --sb-text: #f2f8f5; --sb-muted: #96b3a3; --sb-emerald: #34d399; --sb-emerald-hover: #10b981; --sb-emerald-soft: rgba(52, 211, 153, 0.16);
+      --sidebar-w: 252px; --sidebar-collapsed-w: 74px;
+      --shadow-xs: 0 2px 8px rgba(17, 34, 24, 0.05); --shadow-modal: 0 22px 38px -10px rgba(17, 34, 24, 0.28);
+      --hadir-bg: #e8f8f0; --hadir-text: #047857; --hadir-border: #a7f3d0;
+      --sakit-bg: #fef2f2; --sakit-text: #b91c1c; --sakit-border: #fecaca;
+      --izin-bg: #fffbeb; --izin-text: #b45309; --izin-border: #fde68a;
+      --cuti-bg: #ecfdfb; --cuti-text: #0f766e; --cuti-border: #99f6e4;
+      --off-bg: #e8f1eb; --off-text: #375243; --off-border: #c7dccf;
+    }
+    [data-theme="dark"] {
+      --bg-app: #09130e; --bg-pattern: rgba(52, 211, 153, 0.09);
+      --bg-card: #101e18; --bg-subtle: #162820; --bg-hover: #1e352b;
+      --border: #243d32; --border-strong: #335445;
+      --text-primary: #f0f7f3; --text-secondary: #cde0d6; --text-muted: #87a394;
+      --accent: #10b981; --accent-hover: #34d399; --accent-soft: rgba(16, 185, 129, 0.16); --accent-text: #34d399; --accent-on-solid: #06120c;
+      --sage: #7ca18c; --sage-soft: rgba(124, 161, 140, 0.15); --sage-text: #a5c4b2;
+      --sb-bg: #070f0b; --sb-surface: #0e1a14; --sb-hover: #16271f; --sb-border: #1e3329;
+      --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.36); --shadow-modal: 0 24px 42px -12px rgba(0, 0, 0, 0.78);
+      --hadir-bg: rgba(16, 185, 129, 0.15); --hadir-text: #34d399; --hadir-border: rgba(16, 185, 129, 0.30);
+      --sakit-bg: rgba(239, 68, 68, 0.16); --sakit-text: #f87171; --sakit-border: rgba(239, 68, 68, 0.30);
+      --izin-bg: rgba(245, 158, 11, 0.15); --izin-text: #fbbf24; --izin-border: rgba(245, 158, 11, 0.30);
+      --cuti-bg: rgba(20, 184, 166, 0.15); --cuti-text: #2dd4bf; --cuti-border: rgba(20, 184, 166, 0.30);
+      --off-bg: rgba(135, 163, 148, 0.14); --off-text: #cde0d6; --off-border: rgba(135, 163, 148, 0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-app);
+      background-image:
+        radial-gradient(var(--bg-pattern) 1.25px, transparent 1.25px),
+        radial-gradient(var(--bg-pattern) 1.25px, var(--bg-app) 1.25px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+      color: var(--text-primary);
+      font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s, color 0.2s; overflow-x: hidden;
+    }
+
+    /* PIN LOCK & CAT MASCOT */
+    .pin-gate {
+      position: fixed; inset: 0; background: rgba(10, 22, 16, 0.78); backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); z-index: 80; display: flex; align-items: center; justify-content: center; padding: 16px;
+    }
+    .pin-gate.hidden { display: none; }
+    .pin-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 22px;
+      width: 100%; max-width: 375px; padding: 24px 20px; box-shadow: var(--shadow-modal); text-align: center;
+    }
+    .cat-box { width: 120px; height: 92px; margin: 0 auto 6px; user-select: none; }
+    #cat-head { transform-origin: 80px 68px; transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .cat-pupil-group { transition: transform 0.18s ease-out; }
+    .cat-paw { transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .cat-cover #cat-paw-left { transform: translate(13px, -50px) rotate(-10deg); }
+    .cat-cover #cat-paw-right { transform: translate(-13px, -50px) rotate(10deg); }
+    .cat-success #cat-head { animation: catJump 0.55s ease; }
+    .cat-error #cat-head, .pin-dots-error { animation: catShake 0.38s ease; }
+    @keyframes catJump { 0%,100% { transform: translateY(0); } 45% { transform: translateY(-9px); } }
+    @keyframes catShake { 0%,100% { transform: translateX(0); } 25%,75% { transform: translateX(-6px); } 50% { transform: translateX(6px); } }
+
+    .pin-dots { display: flex; justify-content: center; gap: 12px; margin: 14px 0 8px; }
+    .pin-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--bg-subtle); border: 1.5px solid var(--border-strong); transition: all 0.15s; }
+    .pin-dot.active { background: var(--accent); border-color: var(--accent); transform: scale(1.15); }
+    .pin-dot.error { background: var(--sakit-text); border-color: var(--sakit-text); }
+    .pin-dot.success { background: var(--accent); border-color: var(--accent); }
+    .pin-err { font-size: 12.5px; font-weight: 700; color: var(--sakit-text); min-height: 18px; margin-bottom: 10px; }
+    .pin-keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .pin-key {
+      height: 48px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-subtle);
+      color: var(--text-primary); font: 700 18px inherit; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .pin-key:hover { background: var(--bg-hover); }
+    .pin-key:active { transform: scale(0.95); }
+    .pin-key.reset { background: var(--sakit-bg); color: var(--sakit-text); border-color: var(--sakit-border); font-size: 12px; }
+
+    /* APP SHELL & SIDEBAR */
+    .app-shell { display: flex; min-height: 100dvh; }
+    .app-shell.locked { opacity: 0; pointer-events: none; }
+    .sidebar {
+      width: var(--sidebar-w); background: var(--sb-bg); border-right: 1px solid var(--sb-border); color: var(--sb-text);
+      display: flex; flex-direction: column; position: fixed; inset: 0 auto 0 0; z-index: 35; transition: width 0.2s, transform 0.25s;
+    }
+    body.sidebar-collapsed .sidebar { width: var(--sidebar-collapsed-w); }
+    .sidebar-header { padding: 16px; display: flex; align-items: center; border-bottom: 1px solid var(--sb-border); }
+    .brand { display: flex; align-items: center; gap: 11px; overflow: hidden; }
+    .brand-mark {
+      width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #34d399, #059669);
+      color: #07130d; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden; border: 1px solid rgba(52, 211, 153, 0.45);
+    }
+    .brand-mark img, .logo-preview-lg img, .avatar img, .detail-avatar-lg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .brand-info { overflow: hidden; white-space: nowrap; }
+    .brand-name { font-size: 14.5px; font-weight: 700; color: var(--sb-text); text-overflow: ellipsis; overflow: hidden; }
+    .brand-sub { font-size: 11.5px; color: var(--sb-muted); text-overflow: ellipsis; overflow: hidden; }
+    body.sidebar-collapsed .brand-info, body.sidebar-collapsed .nav-label, body.sidebar-collapsed .nav-section-title,
+    body.sidebar-collapsed .shift-card-detail, body.sidebar-collapsed .btn-cta-text, body.sidebar-collapsed .nav-pill { display: none; }
+    body.sidebar-collapsed .sidebar-header { justify-content: center; padding: 16px 10px; }
+
+    .sidebar-body { flex: 1; padding: 14px 12px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+    .btn-cta {
+      width: 100%; height: 42px; background: var(--sb-emerald); color: #06140e; border: none; border-radius: 11px;
+      font: 700 13.5px inherit; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+    }
+    .btn-cta:hover { background: var(--sb-emerald-hover); color: #fff; }
+    .nav-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sb-muted); padding: 0 10px 6px; }
+    .nav-list { display: flex; flex-direction: column; gap: 4px; }
+    .nav-item {
+      width: 100%; display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: 10px;
+      border: 1px solid transparent; background: transparent; color: #c6dbd0; font: 500 13.5px inherit; text-align: left; cursor: pointer;
+    }
+    body.sidebar-collapsed .nav-item { justify-content: center; padding: 10px; }
+    .nav-item:hover { background: var(--sb-hover); color: #fff; }
+    .nav-item.active { background: var(--sb-emerald-soft); color: var(--sb-emerald); border-color: rgba(52, 211, 153, 0.28); font-weight: 600; }
+    .nav-item svg { flex-shrink: 0; }
+    .nav-pill { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: rgba(52, 211, 153, 0.16); color: var(--sb-emerald); }
+
+    .shift-box { background: var(--sb-surface); border: 1px solid var(--sb-border); border-radius: 12px; padding: 10px 12px; margin-top: auto; }
+    body.sidebar-collapsed .shift-box { padding: 10px; display: flex; justify-content: center; }
+    .shift-row { display: flex; align-items: center; gap: 9px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sb-emerald); box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.24); flex-shrink: 0; }
+    .shift-title { font-size: 12.5px; font-weight: 700; color: var(--sb-text); }
+    .shift-sub { font-size: 11.5px; color: var(--sb-muted); }
+    .sidebar-footer { padding: 10px 12px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--sb-border); display: flex; flex-direction: column; gap: 3px; }
+    .spin-icon { animation: spin360 0.8s linear infinite; }
+    @keyframes spin360 { to { transform: rotate(360deg); } }
+
+    /* WORKSPACE */
+    .main-area { flex: 1; margin-left: var(--sidebar-w); min-width: 0; display: flex; flex-direction: column; transition: margin-left 0.2s; }
+    body.sidebar-collapsed .main-area { margin-left: var(--sidebar-collapsed-w); }
+    .workspace-header {
+      background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: 0; z-index: 15;
+    }
+    [data-theme="dark"] .workspace-header { background: rgba(16, 30, 24, 0.90); }
+    .header-left { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1; }
+    .mobile-menu-btn {
+      display: none; width: 40px; height: 40px; border-radius: 11px; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-primary); align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+    }
+    .title-wrap { min-width: 0; flex: 1; }
+    .page-title { font-size: clamp(17px, 2vw, 19px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; }
+    .page-subtitle { font-size: 12.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .header-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+    .segment-group { display: inline-flex; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 11px; padding: 3px; gap: 3px; }
+    .segment-btn {
+      border: none; background: transparent; color: var(--text-muted); font: 600 13px inherit; padding: 6px 13px;
+      border-radius: 8px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    }
+    .segment-btn:hover:not(.active) { color: var(--text-primary); }
+    .segment-btn.active { background: #10231b; color: #34d399; }
+    [data-theme="dark"] .segment-btn.active { background: var(--accent); color: #06140e; }
+
+    .field { height: 38px; padding: 0 12px; border: 1px solid var(--border); border-radius: 11px; background: var(--bg-card); color: var(--text-primary); font: 14px inherit; }
+    .field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .search-box { position: relative; display: flex; align-items: center; }
+    .search-box svg { position: absolute; left: 11px; color: var(--text-muted); pointer-events: none; }
+    .search-input { padding-left: 34px; min-width: 240px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; padding: 0 14px;
+      font: 600 13px inherit; border-radius: 11px; border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--accent); color: var(--accent-on-solid); }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-sage { background: #10231b; color: #34d399; border-color: #284d3d; }
+    .btn-sage:hover { background: #173327; color: #6ee7b7; }
+    .btn-danger-ghost { background: var(--sakit-bg); color: var(--sakit-text); border-color: var(--sakit-border); }
+    .btn-ghost { background: var(--bg-card); color: var(--text-secondary); border-color: var(--border); }
+    .btn-ghost:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--border-strong); }
+    .btn-xs { height: 32px; padding: 0 11px; font-size: 12.5px; border-radius: 9px; }
+    .btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    .workspace-body { padding: 22px 28px 64px; max-width: 1440px; width: 100%; margin: 0 auto; }
+
+    /* KPI & HERO */
+    .kpi-grid { display: grid; grid-template-columns: 1.65fr repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+    .kpi-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+    .kpi-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+    .kpi-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 16px;
+      padding: 16px 18px; box-shadow: var(--shadow-xs); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .kpi-card:nth-child(even) { border-top-color: var(--sage); }
+    .kpi-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .kpi-card.no-click { cursor: default; }
+    .kpi-card.no-click:hover { transform: none; }
+
+    .kpi-card.hero-omzet {
+      background: linear-gradient(135deg, #10231b 0%, #1a3b2d 60%, #112d21 100%);
+      border: 1px solid #284d3d; border-top: 3px solid #34d399; color: #f2f8f5;
+    }
+    .kpi-card.hero-omzet .kpi-label { color: #a5c4b2; }
+    .kpi-card.hero-omzet .kpi-num { color: #ffffff; }
+    .kpi-card.hero-omzet .mini-pills { border-top-color: rgba(255, 255, 255, 0.12); }
+    .hero-ratio-wrap { margin-top: 10px; }
+    .hero-ratio-meta { display: flex; justify-content: space-between; font-size: 11px; color: #96b3a3; margin-bottom: 5px; font-weight: 600; }
+    .hero-ratio-track { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.14); border-radius: 99px; overflow: hidden; }
+    .hero-ratio-fill { height: 100%; background: linear-gradient(90deg, #34d399, #10b981); border-radius: 99px; transition: width 0.4s ease; }
+
+    .kpi-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 8px; }
+    .kpi-label { font-size: 12.5px; font-weight: 600; color: var(--text-muted); }
+    .kpi-chip { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 7px; border: 1px solid transparent; white-space: nowrap; }
+    .kpi-num { font-size: clamp(19px, 2vw, 24px); font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -0.015em; }
+    .kpi-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
+    .mini-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--border); }
+    .m-pill { font-size: 11.5px; font-weight: 600; padding: 4px 9px; border-radius: 8px; background: var(--off-bg); color: var(--off-text); border: 1px solid var(--off-border); cursor: pointer; text-align: center; }
+    .p-hadir { background: var(--hadir-bg); color: var(--hadir-text); border-color: var(--hadir-border); }
+    .p-sakit { background: var(--sakit-bg); color: var(--sakit-text); border-color: var(--sakit-border); }
+    .p-izin { background: var(--izin-bg); color: var(--izin-text); border-color: var(--izin-border); }
+    .p-cuti { background: var(--cuti-bg); color: var(--cuti-text); border-color: var(--cuti-border); }
+
+    /* URGENT OVERDUE BANNER */
+    .urgent-banner {
+      background: var(--bg-card); border: 1px solid var(--sakit-border); border-left: 4px solid var(--sakit-text);
+      border-radius: 15px; padding: 14px 16px; margin-bottom: 18px; box-shadow: var(--shadow-xs);
+      display: none; flex-direction: column; gap: 10px;
+    }
+    .urgent-banner.show { display: flex; }
+    .urgent-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .urgent-title { font-size: 13.5px; font-weight: 800; color: var(--sakit-text); display: flex; align-items: center; gap: 7px; }
+    .urgent-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+    .urgent-list::-webkit-scrollbar { display: none; }
+    .urgent-chip-card {
+      flex: 0 0 auto; min-width: 235px; background: var(--sakit-bg); border: 1px solid var(--sakit-border);
+      border-radius: 12px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+
+    /* PANELS & TABLES */
+    .panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-xs); overflow: hidden; margin-bottom: 20px; }
+    .panel-head { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+    .panel-title-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .panel-title { font-size: 15.5px; font-weight: 700; }
+    .period-pill { font-size: 12px; font-weight: 600; color: var(--accent-text); background: var(--accent-soft); border: 1px solid var(--border); padding: 3px 10px; border-radius: 999px; }
+
+    .table-scroll { overflow-x: auto; max-height: 600px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th {
+      background: var(--bg-subtle); color: var(--text-muted); font-size: 11.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; padding: 12px 15px; border-bottom: 1px solid var(--border); white-space: nowrap; position: sticky; top: 0; z-index: 4;
+    }
+    td { padding: 12px 15px; border-bottom: 1px solid var(--border); font-size: 13.5px; vertical-align: middle; white-space: nowrap; }
+    tfoot td { background: var(--bg-subtle); font-weight: 700; border-top: 1px solid var(--border-strong); border-bottom: none; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background-color: var(--bg-hover); }
+    tbody tr.row-late td { background-color: var(--sakit-bg) !important; }
+    .col-center { text-align: center; font-variant-numeric: tabular-nums; }
+    .col-right { text-align: right; font-variant-numeric: tabular-nums; }
+    .num-tab { font-variant-numeric: tabular-nums; }
+
+    .member-cell { display: flex; align-items: center; gap: 10px; min-width: 170px; }
+    .avatar {
+      width: 35px; height: 35px; border-radius: 10px; background: #10231b; border: 1px solid var(--border-strong); color: #34d399;
+      font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; cursor: pointer;
+    }
+    .member-link { background: none; border: none; padding: 0; font: 700 13.5px inherit; color: var(--text-primary); cursor: pointer; text-align: left; }
+    .member-link:hover { color: var(--accent-text); text-decoration: underline; }
+
+    .badge { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 600; border: 1px solid transparent; white-space: nowrap; }
+    .badge-hadir { background: var(--hadir-bg); color: var(--hadir-text); border-color: var(--hadir-border); }
+    .badge-sakit { background: var(--sakit-bg); color: var(--sakit-text); border-color: var(--sakit-border); }
+    .badge-izin { background: var(--izin-bg); color: var(--izin-text); border-color: var(--izin-border); }
+    .badge-cuti { background: var(--cuti-bg); color: var(--cuti-text); border-color: var(--cuti-border); }
+    .badge-off { background: var(--off-bg); color: var(--off-text); border-color: var(--off-border); }
+    .badge-sage { background: var(--sage-soft); color: var(--sage-text); border-color: var(--border); }
+    .st-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    .prog-track { width: 100%; height: 8px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 99px; overflow: hidden; }
+    .prog-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 99px; transition: width 0.5s ease; }
+
+    .btn-act {
+      display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 11px; font: 600 12px inherit;
+      border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary); cursor: pointer; margin-left: 5px;
+    }
+    .btn-act:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--border-strong); }
+    .act-in { background: var(--hadir-bg); color: var(--hadir-text); border-color: var(--hadir-border); }
+    .act-del { background: var(--sakit-bg); color: var(--sakit-text); border-color: var(--sakit-border); }
+
+    /* MOBILE CARD LIST */
+    .mobile-loan-list { display: none; flex-direction: column; gap: 11px; padding: 12px; }
+    .m-loan-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 15px; padding: 14px;
+      box-shadow: var(--shadow-xs); display: flex; flex-direction: column; gap: 11px;
+    }
+    .m-loan-card.is-late { border-color: var(--sakit-border); background: linear-gradient(180deg, var(--sakit-bg) 0%, var(--bg-card) 38%); }
+    .m-loan-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .m-loan-identity { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+    .m-loan-name { font-size: 14.5px; font-weight: 800; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .m-loan-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; }
+    .m-loan-amounts {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: var(--bg-subtle);
+      border: 1px solid var(--border); border-radius: 11px; padding: 9px 11px;
+    }
+    .m-amt-label { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+    .m-amt-val { font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 1px; }
+    .m-loan-note { font-size: 12px; color: var(--text-secondary); background: var(--bg-subtle); padding: 6px 10px; border-radius: 8px; }
+    .m-loan-actions { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 2px; }
+    .m-loan-actions .btn-act { margin-left: 0; flex: 1; min-width: 68px; height: 35px; font-size: 12.5px; border-radius: 9px; }
+    .m-loan-summary-bar {
+      background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 11px 13px;
+      display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; font-weight: 700;
+    }
+
+    /* SPLIT LAYOUTS & AI/ADMIN */
+    .split-layout, .admin-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; }
+    .admin-body { padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+    .logo-editor-row { display: flex; align-items: center; gap: 14px; padding: 12px 14px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; }
+    .logo-preview-lg {
+      width: 56px; height: 56px; border-radius: 13px; background: linear-gradient(135deg, #34d399, #059669); color: #07130d;
+      font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; border: 1px solid var(--border-strong);
+    }
+    .pin-input { font-size: 16px; font-weight: 700; letter-spacing: 0.28em; text-align: center; height: 42px; }
+    .info-callout { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 13px; color: var(--text-secondary); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .ai-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+    .ai-chip {
+      padding: 7px 12px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg-subtle);
+      color: var(--text-secondary); font: 600 12.5px inherit; cursor: pointer; text-align: left;
+    }
+    .ai-chip:hover { background: var(--accent-soft); color: var(--accent-text); border-color: var(--hadir-border); }
+    .ai-chat-box {
+      display: flex; flex-direction: column; gap: 10px; max-height: 360px; overflow-y: auto;
+      padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .ai-msg { padding: 11px 14px; border-radius: 11px; font-size: 13.5px; line-height: 1.55; }
+    .ai-msg.bot { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
+    .ai-msg.user { background: #10231b; color: #f2f8f5; margin-left: 24px; border: 1px solid #284d3d; }
+    .ai-form { display: flex; gap: 8px; margin-top: 12px; }
+    .reminder-item { padding: 12px 15px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .reminder-item:last-child { border-bottom: none; }
+
+    /* RECEIPT */
+    .rcpt-banner { background: var(--hadir-bg); border: 1px solid var(--hadir-border); color: var(--hadir-text); padding: 9px 12px; border-radius: 9px; text-align: center; font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .rcpt-total-box { background: #10231b; color: #f2f8f5; border: 1px solid #284d3d; border-radius: 12px; padding: 15px 16px; display: flex; flex-direction: column; gap: 8px; }
+    .rcpt-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #96b3a3; }
+    .rcpt-row strong { color: #ffffff; font-size: 14.5px; }
+    .rcpt-grand { border-top: 1px solid #284d3d; padding-top: 10px; margin-top: 2px; display: flex; justify-content: space-between; align-items: center; }
+
+    /* MODALS & TOAST */
+    .backdrop { position: fixed; inset: 0; background: rgba(10, 22, 16, 0.56); backdrop-filter: blur(2px); display: none; align-items: center; justify-content: center; z-index: 50; padding: 16px; }
+    .backdrop.show { display: flex; }
+    .modal-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; width: 100%; max-width: 480px; box-shadow: var(--shadow-modal); overflow: hidden; }
+    .modal-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .modal-title { font-size: 16px; font-weight: 700; }
+    .close-btn { background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; line-height: 1; padding: 2px 6px; }
+    .modal-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 13px; max-height: 82dvh; overflow-y: auto; }
+    .modal-foot { padding: 14px 20px; border-top: 1px solid var(--border); background: var(--bg-subtle); display: flex; justify-content: flex-end; gap: 8px; }
+
+    .form-item { display: flex; flex-direction: column; gap: 6px; }
+    .form-item label { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+    .info-line { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; gap: 12px; }
+    .info-line:last-child { border-bottom: none; }
+    .detail-hero { display: flex; align-items: center; gap: 12px; padding: 13px 14px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; }
+    .detail-avatar-lg {
+      width: 48px; height: 48px; border-radius: 12px; background: #10231b; border: 1.5px solid var(--accent); color: #34d399;
+      font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    .toast {
+      position: fixed; top: calc(14px + env(safe-area-inset-top)); left: 50%; transform: translate(-50%, -18px);
+      background: rgba(16, 35, 27, 0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      color: #f2f8f5; border: 1px solid #284d3d; padding: 10px 18px; border-radius: 999px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28); opacity: 0; pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 95;
+      display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 24px);
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; flex-shrink: 0; }
+
+    .empty-msg { text-align: center; padding: 32px 16px; color: var(--text-muted); font-size: 13.5px; }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 22, 16, 0.55); z-index: 30; }
+    .sidebar-overlay.show { display: block; }
+
+    .mobile-bottom-nav {
+      display: none; position: fixed; left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom));
+      background: rgba(16, 35, 27, 0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(52, 211, 153, 0.24); border-radius: 22px; padding: 6px 8px;
+      z-index: 28; justify-content: space-around; align-items: center; box-shadow: 0 14px 32px rgba(6, 18, 12, 0.42);
+    }
+    .mb-nav-btn {
+      background: none; border: none; color: var(--sb-muted); font: 600 10.5px inherit;
+      display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 5px 8px; cursor: pointer; flex: 1;
+    }
+    .mb-nav-btn.active { color: var(--sb-emerald); }
+    .mb-fab-btn {
+      width: 44px; height: 44px; border-radius: 15px; border: none; background: linear-gradient(135deg, #34d399, #10b981);
+      color: #06140e; display: flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.42); flex-shrink: 0; margin: 0 4px;
+    }
+
+    @media (max-width: 1180px) {
+      .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .kpi-grid .kpi-card:first-child { grid-column: span 4; }
+      .kpi-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .split-layout, .admin-layout, .kpi-grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); width: var(--sidebar-w) !important; }
+      .sidebar.mobile-open { transform: translateX(0); }
+      .main-area { margin-left: 0 !important; }
+      .mobile-menu-btn { display: inline-flex; }
+      #btnCollapseSidebar { display: none; }
+      .mobile-bottom-nav { display: flex; }
+      .workspace-body { padding: 18px 18px calc(96px + env(safe-area-inset-bottom)); }
+    }
+    @media (max-width: 640px) {
+      .workspace-header { padding: 12px 14px; gap: 10px; }
+      .header-left, .header-controls { width: 100%; }
+      .page-title { font-size: 17px; }
+      .page-subtitle { font-size: 12px; }
+      .header-controls { justify-content: space-between; gap: 7px; }
+      .header-controls .field, .header-controls .btn { flex: 1; height: 38px; font-size: 13px; padding: 0 10px; }
+      .workspace-body { padding: 14px 12px calc(94px + env(safe-area-inset-bottom)); }
+      .kpi-grid, .kpi-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+      .kpi-grid .kpi-card:first-child { grid-column: span 2; }
+      .kpi-card { padding: 14px; border-radius: 15px; }
+      .kpi-label { font-size: 12px; }
+      .kpi-num { font-size: 18.5px; }
+      .kpi-grid .kpi-card:first-child .kpi-num { font-size: 24px; }
+      .mini-pills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .desktop-table-wrap { display: none; }
+      .mobile-loan-list { display: flex; }
+      .panel-head { padding: 13px 14px; }
+      .panel-title { font-size: 15px; }
+      .segment-group { width: 100%; overflow-x: auto; scrollbar-width: none; padding: 4px; }
+      .segment-group::-webkit-scrollbar { display: none; }
+      .segment-btn { padding: 7px 12px; font-size: 12.5px; }
+      .search-box, .search-input { width: 100%; min-width: 0; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .field, input, select, textarea { font-size: 16px !important; height: 42px; }
+      .btn-xs { font-size: 12.5px !important; height: 34px; }
+      .backdrop { padding: 0; align-items: flex-end; }
+      .modal-box { max-width: 100%; border-radius: 22px 22px 0 0; border-bottom: none; }
+      .modal-body { max-height: 82dvh; padding: 16px; }
+      .modal-foot { padding: 12px 16px calc(14px + env(safe-area-inset-bottom)); }
+      .modal-foot .btn { flex: 1; height: 42px; }
+    }
+
+    .print-table-header { display: none; }
+    @media print {
+      @page { size: landscape; margin: 10mm; }
+      body, .app-shell, .main-area, .workspace-body, .panel, .table-scroll, .desktop-table-wrap {
+        background: #fff !important; background-image: none !important; color: #000 !important; margin: 0 !important; padding: 0 !important;
+        overflow: visible !important; max-height: none !important; box-shadow: none !important; border: none !important; display: block !important;
+      }
+      .sidebar, .workspace-header, .mobile-bottom-nav, .mobile-loan-list, .urgent-banner, .no-print, .kpi-grid, #chartPanel, #section-keuntungan, #section-ai, #section-admin, .toast, .pin-gate { display: none !important; }
+      .print-table-header { display: block !important; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #112218; }
+      table { width: 100% !important; border-collapse: collapse !important; }
+      th, td { border: 1px solid #cbd5e1 !important; padding: 7px 10px !important; color: #000 !important; font-size: 9pt !important; position: static !important; }
+      th { background: #f1f5f9 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PIN GATE WITH CAT MASCOT -->
+  <div id="pinModal" class="pin-gate">
+    <div class="pin-card">
+      <div id="catMascotBox" class="cat-box" title="Maskot Keamanan Usaha Gen Z">
+        <svg viewBox="0 0 160 130" style="width:100%; height:100%; overflow:visible;">
+          <g id="cat-head">
+            <path d="M 40 54 L 32 16 L 66 36 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M 44 48 L 38 24 L 60 37 Z" fill="#10b981" />
+            <path d="M 120 54 L 128 16 L 94 36 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M 116 48 L 122 24 L 100 37 Z" fill="#10b981" />
+            <ellipse cx="80" cy="68" rx="46" ry="38" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5" />
+            <path d="M 80 31 L 80 41 M 71 33 L 73 41 M 89 33 L 87 41" stroke="#059669" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M 48 98 Q 80 110 112 98" stroke="#059669" stroke-width="7" stroke-linecap="round" fill="none" />
+            <circle cx="80" cy="106" r="10" fill="#facc15" stroke="#eab308" stroke-width="1.5" />
+            <text id="catCollarText" x="80" y="109" font-size="7.5" font-weight="800" fill="#78350f" text-anchor="middle">GZ</text>
+            <path id="cat-brow-left" d="M 52 49 Q 62 46 70 49" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <path id="cat-brow-right" d="M 90 49 Q 98 46 108 49" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <g id="cat-eyes-open">
+              <circle cx="62" cy="64" r="9.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" />
+              <circle cx="98" cy="64" r="9.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" />
+              <g class="cat-pupil-group" id="cat-pupils">
+                <circle cx="62" cy="64" r="5" fill="#0f172a" />
+                <circle cx="59.8" cy="61.8" r="1.8" fill="#ffffff" />
+                <circle cx="98" cy="64" r="5" fill="#0f172a" />
+                <circle cx="95.8" cy="61.8" r="1.8" fill="#ffffff" />
+              </g>
+            </g>
+            <g id="cat-eyes-happy" style="display: none;">
+              <path d="M 52 65 Q 62 54 72 65" stroke="#059669" stroke-width="3.2" fill="none" stroke-linecap="round" />
+              <path d="M 88 65 Q 98 54 108 65" stroke="#059669" stroke-width="3.2" fill="none" stroke-linecap="round" />
+            </g>
+            <path d="M 76 74 L 84 74 L 80 79 Z" fill="#fb7185" />
+            <path id="cat-mouth" d="M 71 82 Q 75.5 87 80 82 Q 84.5 87 89 82" stroke="#334155" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            <path d="M 22 67 L 43 70 M 21 75 L 43 75" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M 138 67 L 117 70 M 139 75 L 117 75" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" />
+          </g>
+          <g class="cat-paw" id="cat-paw-left">
+            <rect x="35" y="106" width="28" height="36" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5" />
+            <circle cx="43" cy="115" r="2.2" fill="#34d399" /><circle cx="49" cy="113" r="2.2" fill="#34d399" /><circle cx="55" cy="115" r="2.2" fill="#34d399" />
+            <ellipse cx="49" cy="122" rx="4.5" ry="3.2" fill="#34d399" />
+          </g>
+          <g class="cat-paw" id="cat-paw-right">
+            <rect x="97" y="106" width="28" height="36" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5" />
+            <circle cx="105" cy="115" r="2.2" fill="#34d399" /><circle cx="111" cy="113" r="2.2" fill="#34d399" /><circle cx="117" cy="115" r="2.2" fill="#34d399" />
+            <ellipse cx="111" cy="122" rx="4.5" ry="3.2" fill="#34d399" />
+          </g>
+        </svg>
+      </div>
+
+      <h2 style="font-size:18px; font-weight:800;">Keamanan Keuangan</h2>
+      <p style="font-size:12.5px; color:var(--text-muted); margin-top:2px;">Masukkan 6-digit PIN akses eksklusif</p>
+
+      <div id="pinDotsContainer" class="pin-dots">
+        <span class="pin-dot" id="dot-0"></span><span class="pin-dot" id="dot-1"></span><span class="pin-dot" id="dot-2"></span>
+        <span class="pin-dot" id="dot-3"></span><span class="pin-dot" id="dot-4"></span><span class="pin-dot" id="dot-5"></span>
+      </div>
+      <div id="pinErrorMsg" class="pin-err"></div>
+
+      <div class="pin-keypad">
+        <button type="button" class="pin-key" onclick="pressPin('1')">1</button>
+        <button type="button" class="pin-key" onclick="pressPin('2')">2</button>
+        <button type="button" class="pin-key" onclick="pressPin('3')">3</button>
+        <button type="button" class="pin-key" onclick="pressPin('4')">4</button>
+        <button type="button" class="pin-key" onclick="pressPin('5')">5</button>
+        <button type="button" class="pin-key" onclick="pressPin('6')">6</button>
+        <button type="button" class="pin-key" onclick="pressPin('7')">7</button>
+        <button type="button" class="pin-key" onclick="pressPin('8')">8</button>
+        <button type="button" class="pin-key" onclick="pressPin('9')">9</button>
+        <button type="button" class="pin-key reset" onclick="clearPin()">RESET</button>
+        <button type="button" class="pin-key" onclick="pressPin('0')">0</button>
+        <button type="button" class="pin-key" onclick="deletePin()" aria-label="Hapus">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><line x1="18" y1="9" x2="12" y2="15"></line><line x1="12" y1="9" x2="18" y2="15"></line></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+  <div id="mainAppWrapper" class="app-shell locked">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-mark" id="sidebarBrandMark">GZ</div>
+          <div class="brand-info">
+            <div class="brand-name" id="sidebarAppName">USAHA GEN Z</div>
+            <div class="brand-sub" id="sidebarAppSub">Enterprise Finance • 15%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-body">
+        <button type="button" class="btn-cta" onclick="openAddModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span class="btn-cta-text">Peminjam Baru</span>
+        </button>
+
+        <div>
+          <div class="nav-section-title">Menu Utama</div>
+          <nav class="nav-list">
+            <button type="button" class="nav-item active" id="nav-dashboard" onclick="switchView('dashboard')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+              <span class="nav-label">Dashboard Pinjaman</span>
+            </button>
+            <button type="button" class="nav-item" id="nav-keuntungan" onclick="switchView('keuntungan')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              <span class="nav-label">Keuntungan &amp; Sedekah</span>
+            </button>
+            <button type="button" class="nav-item" id="nav-ai" onclick="switchView('ai')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+              <span class="nav-label">Asisten AI Finansial</span>
+              <span class="nav-pill">AI</span>
+            </button>
+            <button type="button" class="nav-item" id="nav-admin" onclick="switchView('admin')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span class="nav-label">Pengaturan Admin</span>
+            </button>
+          </nav>
+        </div>
+
+        <div class="shift-box">
+          <div class="shift-row">
+            <span class="status-dot"></span>
+            <div class="shift-card-detail">
+              <div class="shift-title" id="adminNameDisplay">Imam Mohammed</div>
+              <div class="shift-sub" id="syncStatusText">Spreadsheet Terhubung</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button type="button" class="nav-item" onclick="toggleTheme()">
+          <svg id="iconSun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg id="iconMoon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span class="nav-label" id="btnThemeText">Mode Gelap</span>
+        </button>
+        <button type="button" class="nav-item" id="btnCollapseSidebar" onclick="toggleSidebarCollapse()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+          <span class="nav-label">Ciutkan Sidebar</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="workspace-header">
+        <div class="header-left">
+          <button type="button" class="mobile-menu-btn" onclick="openMobileSidebar()" aria-label="Buka Menu">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="title-wrap">
+            <h1 class="page-title" id="headerTitle">Dashboard Pinjaman</h1>
+            <p class="page-subtitle" id="headerSubtitle">Monitoring modal keluar, piutang beredar, dan jatuh tempo</p>
+          </div>
+        </div>
+        <div class="header-controls">
+          <select id="monthFilter" class="field" onchange="onMonthChange()" aria-label="Filter Bulan">
+            <option value="ALL">Semua Bulan</option>
+          </select>
+          <button type="button" class="btn btn-sage" onclick="manualRefreshData()">
+            <svg id="syncIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+            <span>Sync</span>
+          </button>
+          <button type="button" class="btn btn-ghost no-print" onclick="window.print()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Cetak</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace-body">
+        <!-- VIEW 1: DASHBOARD -->
+        <div id="section-dashboard">
+          <div class="print-table-header">
+            <h1 style="font-size:16pt; font-weight:800;">LAPORAN DATA PEMINJAM — USAHA GEN Z</h1>
+            <p id="printMonthLabel" style="font-size:10pt; font-weight:700;">Periode: Semua Bulan</p>
+            <p style="font-size:9pt; color:#475569;">Tanggal Cetak: <span id="printDate"></span></p>
+          </div>
+
+          <section class="kpi-grid">
+            <div class="kpi-card hero-omzet" onclick="showCardDetails('OMZET', 'Grand Total (Omzet Keseluruhan)')">
+              <div>
+                <div class="kpi-top">
+                  <span class="kpi-label">Grand Total (Omzet)</span>
+                  <span class="kpi-chip badge-hadir">Pokok + Jasa 15%</span>
+                </div>
+                <div class="kpi-num" id="grandTotal">Rp 0</div>
+                <div class="hero-ratio-wrap">
+                  <div class="hero-ratio-meta">
+                    <span>Rasio Pengembalian</span>
+                    <span id="heroReturnPct">0% Kembali</span>
+                  </div>
+                  <div class="hero-ratio-track">
+                    <div id="heroReturnBar" class="hero-ratio-fill" style="width:0%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mini-pills">
+                <span class="m-pill p-hadir" onclick="event.stopPropagation(); showCardDetails('LUNAS', 'Debitur Sudah Lunas')" id="pillCountLunas">Lunas: 0</span>
+                <span class="m-pill p-cuti" onclick="event.stopPropagation(); showCardDetails('AMAN', 'Debitur Aktif / Aman')" id="pillCountAman">Aman: 0</span>
+                <span class="m-pill p-sakit" onclick="event.stopPropagation(); showCardDetails('JATUH_TEMPO', 'Debitur Jatuh Tempo')" id="pillCountTempo">Jatuh Tempo: 0</span>
+                <span class="m-pill" onclick="event.stopPropagation(); showCardDetails('MODAL', 'Seluruh Transaksi')" id="pillCountTotal">Total: 0</span>
+              </div>
+            </div>
+
+            <div class="kpi-card" onclick="showCardDetails('MODAL', 'Total Modal Keluar')">
+              <div class="kpi-top"><span class="kpi-label">Modal Keluar</span><span class="kpi-chip badge-sage">Pokok</span></div>
+              <div class="kpi-num" id="totalPinjaman">Rp 0</div>
+              <div class="kpi-sub">Klik untuk rincian</div>
+            </div>
+
+            <div class="kpi-card" onclick="showCardDetails('LUNAS', 'Dana Kembali (Sudah Lunas)')">
+              <div class="kpi-top"><span class="kpi-label">Dana Kembali</span><span class="kpi-chip badge-hadir">Lunas</span></div>
+              <div class="kpi-num" style="color:var(--hadir-text);" id="totalKembali">Rp 0</div>
+              <div class="kpi-sub">Sudah dilunasi</div>
+            </div>
+
+            <div class="kpi-card" onclick="showCardDetails('PIUTANG', 'Piutang Beredar (Belum Lunas)')">
+              <div class="kpi-top"><span class="kpi-label">Piutang Beredar</span><span class="kpi-chip badge-izin">Berjalan</span></div>
+              <div class="kpi-num" style="color:var(--izin-text);" id="totalPiutang">Rp 0</div>
+              <div class="kpi-sub">Belum dilunasi</div>
+            </div>
+
+            <div class="kpi-card" onclick="showCardDetails('JATUH_TEMPO', 'Risiko Tinggi (Jatuh Tempo)')">
+              <div class="kpi-top"><span class="kpi-label">Jatuh Tempo</span><span class="kpi-chip badge-sakit" id="riskHighVal">0 Debitur</span></div>
+              <div class="kpi-num" style="color:var(--sakit-text);" id="riskHighNominal">Rp 0</div>
+              <div class="kpi-sub" id="riskLowSummary">Aman: 0 Debitur</div>
+            </div>
+          </section>
+
+          <section id="urgentOverdueBanner" class="urgent-banner no-print">
+            <div class="urgent-head">
+              <div class="urgent-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span>Perlu Ditagih (Jatuh Tempo)</span>
+              </div>
+              <span class="badge badge-sakit" id="urgentBadgeCount">0 Debitur</span>
+            </div>
+            <div id="urgentOverdueList" class="urgent-list"></div>
+          </section>
+
+          <section class="panel no-print" id="chartPanel">
+            <div class="panel-head">
+              <div class="panel-title-wrap">
+                <h2 class="panel-title">Tren Bulanan</h2>
+                <span class="period-pill">Modal vs Jasa 15%</span>
+              </div>
+              <button type="button" class="btn btn-ghost btn-xs" id="btnToggleChart" onclick="toggleChartVisibility()">Sembunyikan</button>
+            </div>
+            <div id="chartBodyWrap" style="padding:16px 18px;">
+              <div style="position:relative; height:220px; width:100%;">
+                <canvas id="financeChart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head no-print">
+              <div class="segment-group" role="tablist">
+                <button type="button" class="segment-btn active" id="pill-ALL" onclick="filterStatus('ALL')">Semua</button>
+                <button type="button" class="segment-btn" id="pill-Jatuh Tempo" onclick="filterStatus('Jatuh Tempo')">Jatuh Tempo</button>
+                <button type="button" class="segment-btn" id="pill-Aman" onclick="filterStatus('Aman')">Aktif / Aman</button>
+                <button type="button" class="segment-btn" id="pill-Lunas" onclick="filterStatus('Lunas')">Lunas</button>
+              </div>
+              <div class="search-box">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="searchInput" class="field search-input" placeholder="Cari nama peminjam / catatan..." oninput="applyFilters()">
+              </div>
+            </div>
+
+            <div id="mobileLoanList" class="mobile-loan-list no-print">
+              <div class="empty-msg">Memuat data keuangan dari Spreadsheet...</div>
+            </div>
+
+            <div class="table-scroll desktop-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:46px;" class="col-center">No</th>
+                    <th class="col-center">Bulan</th>
+                    <th>Tanggal</th>
+                    <th class="col-center">Status</th>
+                    <th class="col-center">Risiko</th>
+                    <th>Nama Peminjam</th>
+                    <th class="col-right">Pinjaman</th>
+                    <th class="col-right">Fee 15%</th>
+                    <th>Catatan</th>
+                    <th class="col-center no-print">Bukti</th>
+                    <th style="text-align:right;" class="no-print">Tindakan</th>
+                  </tr>
+                </thead>
+                <tbody id="loanTableBody">
+                  <tr><td colspan="11" class="empty-msg">Memuat data keuangan dari Spreadsheet...</td></tr>
+                </tbody>
+                <tfoot id="loanTableFoot"></tfoot>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- VIEW 2: KEUNTUNGAN & SEDEKAH -->
+        <div id="section-keuntungan" style="display:none;">
+          <section class="kpi-grid-4">
+            <div class="kpi-card no-click">
+              <div class="kpi-top"><span class="kpi-label">Total Jasa (15%)</span><span class="kpi-chip badge-hadir">Akumulasi</span></div>
+              <div class="kpi-num" id="ksCardTotalFee">Rp 0</div>
+              <div class="kpi-sub">Seluruh periode tercatat</div>
+            </div>
+            <div class="kpi-card no-click">
+              <div class="kpi-top"><span class="kpi-label">Pengelola (10%)</span><span class="kpi-chip badge-sage">Porsi 2/3</span></div>
+              <div class="kpi-num" id="ksCardPengelola">Rp 0</div>
+              <div class="kpi-sub">Hak operasional pengelola</div>
+            </div>
+            <div class="kpi-card no-click">
+              <div class="kpi-top"><span class="kpi-label">Sedekah (3%)</span><span class="kpi-chip badge-cuti">Sosial</span></div>
+              <div class="kpi-num" style="color:var(--cuti-text);" id="targetSedekahNominal">Rp 0</div>
+              <div class="kpi-sub">Dana sosial &amp; kebaikan</div>
+            </div>
+            <div class="kpi-card no-click">
+              <div class="kpi-top"><span class="kpi-label">Darurat (2%)</span><span class="kpi-chip badge-izin">Cadangan</span></div>
+              <div class="kpi-num" style="color:var(--izin-text);" id="ksCardDarurat">Rp 0</div>
+              <div class="kpi-sub">Cadangan risiko usaha</div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <div class="panel-title-wrap">
+                <h2 class="panel-title">Target Realisasi Sedekah (3%)</h2>
+                <span class="period-pill" id="progressSedekahPercent">0% Terkumpul</span>
+              </div>
+              <span style="font-size:12px; color:var(--text-muted);">Dihitung otomatis dari pinjaman berstatus Lunas</span>
+            </div>
+            <div style="padding:18px 20px;">
+              <div class="prog-track"><div id="sedekahProgressBar" class="prog-fill" style="width:0%;"></div></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <div class="panel-title-wrap">
+                <h2 class="panel-title">Rincian Pembagian Jasa Bulanan</h2>
+                <span class="period-pill">Pengelola 10% • Sedekah 3% • Darurat 2%</span>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:46px;" class="col-center">No</th>
+                    <th class="col-center">Bulan</th>
+                    <th class="col-right">Total Pinjaman</th>
+                    <th class="col-right">Total Fee (15%)</th>
+                    <th class="col-right">Pengelola (10%)</th>
+                    <th class="col-right">Sedekah (3%)</th>
+                    <th class="col-right">Dana Darurat (2%)</th>
+                  </tr>
+                </thead>
+                <tbody id="ksTableBody"></tbody>
+                <tfoot id="ksTableFoot"></tfoot>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- VIEW 3: ASISTEN AI -->
+        <div id="section-ai" style="display:none;">
+          <section class="kpi-grid-3">
+            <div class="kpi-card no-click">
+              <div class="kpi-top"><span class="kpi-label">Skor Likuiditas</span><span class="kpi-chip badge-hadir" id="aiHealthLabel">Sehat</span></div>
+              <div class="kpi-num" id="aiHealthScore">0 / 100</div>
+              <div class="prog-track" style="margin-top:10px;"><div id="aiHealthBar" class="prog-fill" style="width:0%;"></div></div>
+            </div>
+            <div class="kpi-card no-click">
+              <div class="kpi-top"><span class="kpi-label">Prioritas Penagihan</span><span class="kpi-chip badge-sakit">Jatuh Tempo</span></div>
+              <div class="kpi-num" id="aiOverdueCount">0 Debitur</div>
+              <div class="kpi-sub" id="aiOverdueTotal">Potensi Dana Tertahan: Rp 0</div>
+            </div>
+            <div class="kpi-card no-click">
+              <div class="kpi-top"><span class="kpi-label">Proyeksi Jasa Pengelola</span><span class="kpi-chip badge-cuti">Porsi 10%</span></div>
+              <div class="kpi-num" style="color:var(--hadir-text);" id="aiNetProfit">Rp 0</div>
+              <div class="kpi-sub" id="aiTopDebtor">Pinjaman Terbesar: -</div>
+            </div>
+          </section>
+
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-head">
+                <div class="panel-title-wrap">
+                  <h2 class="panel-title">Konsultasi Gemini AI</h2>
+                  <span id="aiActivePeriodPill" class="period-pill">Semua Bulan</span>
+                  <span id="geminiEngineBadge" class="period-pill" style="cursor:pointer;" onclick="switchView('admin')">Memeriksa...</span>
+                </div>
+                <button type="button" class="btn btn-ghost btn-xs" onclick="resetAIChat()">Bersihkan</button>
+              </div>
+              <div style="padding:16px 18px;">
+                <div class="ai-chips">
+                  <button type="button" class="ai-chip" onclick="askAIQuick('Evaluasi kesehatan arus kas, rasio kredit macet, dan langkah mitigasi risiko bulan ini')">Audit Risiko &amp; Kas</button>
+                  <button type="button" class="ai-chip" onclick="askAIQuick('Analisis konsentrasi risiko dari 3 peminjam dengan nominal terbesar saat ini')">Debitur Terbesar</button>
+                  <button type="button" class="ai-chip" onclick="askAIQuick('Rincikan proyeksi pembagian jasa pengelola, sedekah, dan dana darurat dari data ini')">Proyeksi Bagi Hasil</button>
+                  <button type="button" class="ai-chip" onclick="askAIQuick('Berapa batas maksimal pinjaman baru yang aman disalurkan minggu ini?')">Saran Plafon Baru</button>
+                </div>
+                <div id="aiChatHistory" class="ai-chat-box">
+                  <div class="ai-msg bot">Ajukan pertanyaan mengenai strategi penagihan, batas aman pinjaman baru, atau evaluasi keuntungan usaha Anda pada periode yang sedang aktif.</div>
+                </div>
+                <form onsubmit="handleAIInput(event)" class="ai-form">
+                  <input type="text" id="aiPromptInput" class="field" style="flex:1;" placeholder="Tulis pertanyaan analisis...">
+                  <button type="submit" id="aiSubmitBtn" class="btn btn-primary">Analisis</button>
+                </form>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div class="panel-title-wrap">
+                  <h2 class="panel-title">Pengingat Jatuh Tempo</h2>
+                  <span class="period-pill">Template WA</span>
+                </div>
+              </div>
+              <div id="aiReminderList" style="max-height:470px; overflow-y:auto;">
+                <div class="empty-msg">Memuat daftar prioritas penagihan...</div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- VIEW 4: ADMIN -->
+        <div id="section-admin" style="display:none;">
+          <div class="admin-layout">
+            <section class="panel">
+              <div class="panel-head">
+                <div class="panel-title-wrap">
+                  <h2 class="panel-title">Identitas Aplikasi &amp; Tanda Tangan</h2>
+                  <span class="period-pill">Kuitansi &amp; Brand</span>
+                </div>
+              </div>
+              <form id="adminForm" onsubmit="saveAdminConfig(event)" class="admin-body">
+                <div class="form-item">
+                  <label>Logo Aplikasi</label>
+                  <div class="logo-editor-row">
+                    <div class="logo-preview-lg" id="adminLogoPreview">GZ</div>
+                    <div style="flex:1; min-width:0;">
+                      <div style="font-size:13px; font-weight:700; margin-bottom:2px;">Ikon Sidebar &amp; Kuitansi</div>
+                      <div style="font-size:12px; color:var(--text-muted); margin-bottom:9px;">Format JPG, PNG, atau WEBP.</div>
+                      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                        <input type="file" id="logoImageInput" accept="image/*" style="display:none;">
+                        <button type="button" class="btn btn-ghost btn-xs" onclick="document.getElementById('logoImageInput').click()">Unggah Logo</button>
+                        <button type="button" class="btn btn-ghost btn-xs" onclick="clearAdminAsset('gz_logo_image')">Reset Monogram</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="form-item">
+                    <label for="brandTitleInput">Nama Brand</label>
+                    <input type="text" id="brandTitleInput" required class="field" value="USAHA GEN Z">
+                  </div>
+                  <div class="form-item">
+                    <label for="logoTextInput">Inisial / Teks Logo (Maks. 5)</label>
+                    <input type="text" id="logoTextInput" required maxlength="5" class="field" value="GZ">
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label for="adminNameInput">Nama Pengelola / Admin</label>
+                  <input type="text" id="adminNameInput" required class="field" value="Imam Mohammed">
+                </div>
+                <div class="form-item">
+                  <label>Tanda Tangan Digital (Untuk Kuitansi PNG)</label>
+                  <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px;">
+                    <input type="file" id="adminSignatureInput" accept="image/*" style="display:none;">
+                    <button type="button" class="btn btn-ghost btn-xs" onclick="document.getElementById('adminSignatureInput').click()">Unggah Tanda Tangan</button>
+                    <button type="button" class="btn btn-ghost btn-xs" onclick="clearAdminAsset('gz_admin_signature')">Gunakan Default</button>
+                  </div>
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:8px; padding-top:4px;">
+                  <button type="submit" class="btn btn-primary">Simpan Identitas</button>
+                </div>
+              </form>
+            </section>
+
+            <div style="display:flex; flex-direction:column; gap:18px;">
+              <section class="panel" style="margin-bottom:0;">
+                <div class="panel-head">
+                  <div class="panel-title-wrap">
+                    <h2 class="panel-title">Integrasi Gemini AI</h2>
+                    <span class="period-pill" id="adminGeminiStatusText">Belum diatur</span>
+                  </div>
+                </div>
+                <div class="admin-body">
+                  <div class="info-callout">Hubungkan Google Gemini API Key untuk mengaktifkan analisis kredit dan arus kas otomatis pada tab Asisten AI Finansial.</div>
+                  <div class="form-item">
+                    <label for="geminiApiKeyInput">Gemini API Key</label>
+                    <input type="password" id="geminiApiKeyInput" class="field" placeholder="Tempel API Key (AIzaSy...)">
+                  </div>
+                  <div style="display:flex; justify-content:flex-end; gap:8px;">
+                    <button type="button" id="testGeminiKeyBtn" class="btn btn-ghost" onclick="testGeminiKeyAction()">Tes Koneksi</button>
+                    <button type="button" id="saveGeminiKeyBtn" class="btn btn-sage" onclick="saveGeminiKeyAction()">Simpan API Key Gemini</button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="panel" style="margin-bottom:0;">
+                <div class="panel-head">
+                  <div class="panel-title-wrap"><h2 class="panel-title">Ubah PIN Keamanan</h2></div>
+                </div>
+                <div class="admin-body">
+                  <div class="grid-2">
+                    <div class="form-item">
+                      <label for="oldPinInput">PIN Lama</label>
+                      <input type="password" id="oldPinInput" maxlength="6" inputmode="numeric" placeholder="••••••" class="field pin-input">
+                    </div>
+                    <div class="form-item">
+                      <label for="newPinInput">PIN Baru (6 Digit)</label>
+                      <input type="password" id="newPinInput" maxlength="6" inputmode="numeric" placeholder="••••••" class="field pin-input">
+                    </div>
+                  </div>
+                  <div style="display:flex; justify-content:flex-end;">
+                    <button type="button" class="btn btn-primary" onclick="changePinAction()">Perbarui PIN</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <footer class="no-print" style="text-align:center; padding-top:8px; font-size:12px; color:var(--text-muted);">
+          &copy; <span id="currentYearFooter">2026</span> <span id="footerBrandName">USAHA GEN Z</span> — Sistem Manajemen Keuangan &amp; Pinjaman
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <!-- FLOATING DOCK -->
+  <nav class="mobile-bottom-nav no-print" aria-label="Navigasi Cepat">
+    <button type="button" class="mb-nav-btn active" id="mb-nav-dashboard" onclick="switchView('dashboard')">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+      <span>Pinjaman</span>
+    </button>
+    <button type="button" class="mb-nav-btn" id="mb-nav-keuntungan" onclick="switchView('keuntungan')">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+      <span>Jasa</span>
+    </button>
+    <button type="button" class="mb-fab-btn" onclick="openAddModal()" aria-label="Peminjam Baru">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    </button>
+    <button type="button" class="mb-nav-btn" id="mb-nav-ai" onclick="switchView('ai')">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+      <span>AI</span>
+    </button>
+    <button type="button" class="mb-nav-btn" id="mb-nav-admin" onclick="switchView('admin')">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      <span>Admin</span>
+    </button>
+  </nav>
+
+  <!-- MODALS -->
+  <div id="addDebtorModal" class="backdrop" onclick="closeModalBackdrop(event, 'addDebtorModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 class="modal-title">Tambah Peminjam Baru</h3>
+        <button type="button" class="close-btn" onclick="closeModalById('addDebtorModal')">&times;</button>
+      </div>
+      <form id="debtorForm" onsubmit="submitDebtorForm(event)">
+        <div class="modal-body">
+          <div class="form-item">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="inputBulan">Pilih Bulan</label>
+              <button type="button" onclick="openModalById('newMonthModal')" style="background:none; border:none; color:var(--accent-text); font:700 13px inherit; cursor:pointer;">+ Buat Bulan Baru</button>
+            </div>
+            <select id="inputBulan" required class="field"></select>
+          </div>
+          <div class="grid-2">
+            <div class="form-item"><label for="inputTgl">Tanggal Pinjam</label><input type="date" id="inputTgl" required class="field"></div>
+            <div class="form-item"><label for="inputPinjaman">Nominal Pinjaman (Rp)</label><input type="number" id="inputPinjaman" required min="1" placeholder="500000" class="field"></div>
+          </div>
+          <div class="form-item"><label for="inputNama">Nama Peminjam</label><input type="text" id="inputNama" required placeholder="Nama lengkap peminjam" class="field"></div>
+          <div class="form-item"><label for="inputCatatan">Catatan (Opsional)</label><input type="text" id="inputCatatan" placeholder="Keterangan tambahan..." class="field"></div>
+          <div class="form-item"><label for="inputEvidence">Link Bukti Transfer <span style="color:var(--sakit-text);">*Wajib</span></label><input type="url" id="inputEvidence" required placeholder="https://drive.google.com/..." class="field"></div>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeModalById('addDebtorModal')">Batal</button>
+          <button type="submit" id="submitBtn" class="btn btn-primary">Simpan Data</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="editDebtorModal" class="backdrop" onclick="closeModalBackdrop(event, 'editDebtorModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 class="modal-title">Ubah Data Peminjam</h3>
+        <button type="button" class="close-btn" onclick="closeModalById('editDebtorModal')">&times;</button>
+      </div>
+      <form id="editDebtorForm" onsubmit="submitEditForm(event)">
+        <input type="hidden" id="editOldBulan"><input type="hidden" id="editNo">
+        <div class="modal-body">
+          <div class="grid-2">
+            <div class="form-item"><label for="editBulan">Bulan Sheet</label><select id="editBulan" required class="field"></select></div>
+            <div class="form-item"><label for="editTgl">Tanggal Pinjam</label><input type="date" id="editTgl" required class="field"></div>
+          </div>
+          <div class="form-item"><label for="editNama">Nama Peminjam</label><input type="text" id="editNama" required class="field"></div>
+          <div class="form-item"><label for="editPinjaman">Nominal Pinjaman (Rp)</label><input type="number" id="editPinjaman" required min="1" class="field"></div>
+          <div class="form-item"><label for="editCatatan">Catatan</label><input type="text" id="editCatatan" class="field"></div>
+          <div class="form-item">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label>Link Bukti <span style="color:var(--sakit-text);">*Wajib</span></label>
+              <button type="button" onclick="addEditLinkInput('')" style="background:none; border:none; color:var(--accent-text); font:700 13px inherit; cursor:pointer;">+ Tambah Link</button>
+            </div>
+            <div id="editEvidenceContainer" style="display:flex; flex-direction:column; gap:8px;"></div>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeModalById('editDebtorModal')">Batal</button>
+          <button type="submit" id="editSubmitBtn" class="btn btn-primary">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="borrowerDetailModal" class="backdrop" onclick="closeModalBackdrop(event, 'borrowerDetailModal')">
+    <div class="modal-box" style="max-width:450px;">
+      <div class="modal-head"><h3 class="modal-title">Detail Informasi Peminjam</h3><button type="button" class="close-btn" onclick="closeModalById('borrowerDetailModal')">&times;</button></div>
+      <div class="modal-body" id="borrowerDetailBody"></div>
+      <div class="modal-foot"><button type="button" class="btn btn-ghost" onclick="closeModalById('borrowerDetailModal')">Tutup</button></div>
+    </div>
+  </div>
+
+  <div id="newMonthModal" class="backdrop" onclick="closeModalBackdrop(event, 'newMonthModal')">
+    <div class="modal-box" style="max-width:390px;">
+      <div class="modal-head"><h3 class="modal-title">Buat Tab Bulan Baru</h3><button type="button" class="close-btn" onclick="closeModalById('newMonthModal')">&times;</button></div>
+      <div class="modal-body">
+        <div class="form-item"><label for="newMonthInput">Nama Bulan (Contoh: Desember)</label><input type="text" id="newMonthInput" placeholder="Masukkan nama bulan..." class="field"></div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModalById('newMonthModal')">Batal</button>
+        <button type="button" class="btn btn-primary" onclick="submitNewMonth()">Buat Sheet</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="backdrop" onclick="closeModalBackdrop(event, 'deleteModal')">
+    <div class="modal-box" style="max-width:400px;">
+      <div class="modal-head"><h3 class="modal-title">Konfirmasi Hapus</h3><button type="button" class="close-btn" onclick="closeModalById('deleteModal')">&times;</button></div>
+      <div class="modal-body"><div class="info-callout">Apakah Anda yakin ingin menghapus data pinjaman milik <strong id="delName"></strong>?</div></div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModalById('deleteModal')">Batal</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger-ghost">Hapus Permanen</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="evidenceModal" class="backdrop" onclick="closeModalBackdrop(event, 'evidenceModal')">
+    <div class="modal-box" style="max-width:430px;">
+      <div class="modal-head"><h3 class="modal-title">Lampiran Bukti Transaksi</h3><button type="button" class="close-btn" onclick="closeModalById('evidenceModal')">&times;</button></div>
+      <div class="modal-body" id="modalLinksContainer"></div>
+      <div class="modal-foot"><button type="button" class="btn btn-ghost" onclick="closeModalById('evidenceModal')">Tutup</button></div>
+    </div>
+  </div>
+
+  <div id="detailCardModal" class="backdrop" onclick="closeModalBackdrop(event, 'detailCardModal')">
+    <div class="modal-box" style="max-width:620px;">
+      <div class="modal-head">
+        <div><h3 id="detailModalTitle" class="modal-title">Rincian Data</h3><p id="detailModalSubtitle" style="font-size:12.5px; color:var(--text-muted);">0 data ditemukan</p></div>
+        <button type="button" class="close-btn" onclick="closeModalById('detailCardModal')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:0;">
+        <div class="table-scroll" style="max-height:58dvh;">
+          <table>
+            <thead>
+              <tr><th style="width:44px;" class="col-center">No</th><th>Nama Peminjam</th><th class="col-center">Bulan</th><th class="col-center">Status</th><th class="col-right">Nominal</th></tr>
+            </thead>
+            <tbody id="detailModalBody"></tbody>
+            <tfoot id="detailModalFoot"></tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="modal-foot"><button type="button" class="btn btn-ghost" onclick="closeModalById('detailCardModal')">Tutup</button></div>
+    </div>
+  </div>
+
+  <div id="receiptModal" class="backdrop" onclick="closeModalBackdrop(event, 'receiptModal')">
+    <div class="modal-box" style="max-width:480px;">
+      <div class="modal-head"><h3 class="modal-title">Kuitansi Finansial Resmi</h3><button type="button" class="close-btn" onclick="closeReceiptModal()">&times;</button></div>
+      <div id="receiptContent" class="modal-body">
+        <div class="detail-hero" style="justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div id="receiptLogoBox" class="detail-avatar-lg">GZ</div>
+            <div><div id="receiptBrandTitle" style="font-size:15px; font-weight:800;">USAHA GEN Z</div><div style="font-size:11px; font-weight:700; color:var(--accent-text);">BUKTI TRANSAKSI RESMI</div></div>
+          </div>
+          <div style="text-align:right;">
+            <span class="badge badge-hadir">TERVALIDASI</span>
+            <div id="rcptNoRef" class="num-tab" style="font-size:11px; font-weight:700; color:var(--text-muted); margin-top:4px;">REF: #001</div>
+            <div id="rcptPrintTime" style="font-size:10.5px; color:var(--text-muted);">Dicetak: -</div>
+          </div>
+        </div>
+        <div class="rcpt-banner">Kuitansi Bukti Pinjaman &amp; Jasa Layanan (15%)</div>
+        <div>
+          <div class="info-line"><span style="color:var(--text-muted);">Nama Peminjam</span><strong id="rcptNama">-</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Bulan Periode</span><strong id="rcptBulan">-</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Tanggal Transaksi</span><strong id="rcptTgl" class="num-tab">-</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Catatan</span><span id="rcptCatatan" style="font-weight:600;">-</span></div>
+        </div>
+        <div class="rcpt-total-box">
+          <div class="rcpt-row"><span>Pokok Pinjaman</span><strong id="rcptNominalPinjaman" class="num-tab">Rp 0</strong></div>
+          <div class="rcpt-row"><span>Estimasi Jasa (15%)</span><strong id="rcptFee" class="num-tab" style="color:#34d399;">Rp 0</strong></div>
+          <div class="rcpt-grand">
+            <span style="font-size:12px; font-weight:700; letter-spacing:0.05em;">TOTAL KEWAJIBAN</span>
+            <strong id="rcptTotalTagihan" class="num-tab" style="font-size:20px; color:#ffffff;">Rp 0</strong>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:12px; padding-top:4px;">
+          <div style="font-size:12px;"><div style="color:var(--text-muted);">Verifikasi Sistem:</div><div style="font-weight:700; color:var(--accent-text); margin-top:2px;">&#9679; Terhubung Spreadsheet</div></div>
+          <div style="text-align:center; width:175px; padding:10px; background:var(--bg-subtle); border:1px solid var(--border); border-radius:11px;">
+            <div style="font-size:11px; color:var(--text-muted); font-weight:600;">Disetujui Oleh,</div>
+            <div id="rcptSignatureContainer" style="height:48px; display:flex; align-items:center; justify-content:center; margin:2px 0;"></div>
+            <div id="rcptAdminName" style="font-size:12px; font-weight:700; border-top:1px solid var(--border); padding-top:5px;">Imam Mohammed</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeReceiptModal()">Tutup</button>
+        <button type="button" class="btn btn-primary" onclick="downloadReceiptPNG()">Unduh PNG</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="notification" class="toast">
+    <span class="toast-dot"></span>
+    <div style="min-width:0;">
+      <span style="font-weight:700; font-size:12.5px; color:#34d399;" id="notifTitle">Notifikasi</span>
+      <span style="font-size:12.5px; color:#e2f0e8; margin-left:6px;" id="notifDesc">Pesan sistem</span>
+    </div>
+  </div>
+
+  <script>
+    const GAS_API_URL = "https://script.google.com/macros/s/AKfycbzB6OIvRR413JUHQcxHOUkj8vD5OUohcMO-iPBNLjxFhwsAyIhn9ubJkvJnhDq15_ii/exec";
+
+    if (typeof window.google === "undefined" || !window.google.script) {
+      function createGasRunner(successCb, failureCb) {
+        return new Proxy({}, {
+          get(_, prop) {
+            if (prop === "withSuccessHandler") return (fn) => createGasRunner(fn, failureCb);
+            if (prop === "withFailureHandler") return (fn) => createGasRunner(successCb, fn);
+            return (...args) => {
+              if (!GAS_API_URL || GAS_API_URL.indexOf("http") !== 0) {
+                const err = new Error("URL Web App Apps Script belum diisi pada GAS_API_URL di index.html.");
+                if (failureCb) failureCb(err);
+                return;
+              }
+              fetch(GAS_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({ action: prop, args: args })
+              })
+              .then(res => res.json())
+              .then(res => {
+                if (res.status === "ok") {
+                  if (successCb) successCb(res.data);
+                } else if (failureCb) {
+                  failureCb(new Error(res.message || "Gagal memproses permintaan"));
+                }
+              })
+              .catch(err => { if (failureCb) failureCb(err); });
+            };
+          }
+        });
+      }
+      window.google = { script: { get run() { return createGasRunner(null, null); } } };
+    }
+
+    const $ = id => document.getElementById(id);
+    const escapeHTML = str => !str ? '' : String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    const formatRupiah = num => new Intl.NumberFormat('id-ID').format(Math.round(Number(num) || 0));
+
+    const DEFAULT_CONFIG = { adminName: 'Imam Mohammed', brandTitle: 'USAHA GEN Z', logoText: 'GZ', logoImage: '', adminSignature: '' };
+    const MONTH_MAP = { Jan:'01', Feb:'02', Mar:'03', Apr:'04', Mei:'05', Jun:'06', Jul:'07', Agu:'08', Sep:'09', Okt:'10', Nov:'11', Des:'12' };
+    const defaultSignatureSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80'><path d='M40 65 C60 60, 80 20, 100 45 C110 58, 120 40, 150 42 M70 45 C50 42, 35 50, 45 55 C55 60, 65 30, 95 15' stroke='%23065f46' stroke-width='4' fill='none' stroke-linecap='round'/></svg>";
+
+    let globalLoans = [];
+    let globalMonths = [];
+    let currentMonthData = [];
+    let currentStatusFilter = 'ALL';
+    let chartInstance = null;
+    let isChartVisible = true;
+    let deleteTarget = null;
+    let enteredPin = '';
+    let originalReceiptHTML = '';
+    let notifTimeout = null;
+    let latestReceiptBlob = null;
+    let latestReceiptFileName = 'Kuitansi.png';
+
+    function classifyLoanItem_(item) {
+      const pinjaman = Number(item.pinjaman) || 0;
+      const fee15 = Number(item.fee15) || 0;
+      const total = pinjaman + fee15;
+      const st = String(item.sisa || '').toLowerCase();
+      const isPaid = st.indexOf('lunas') !== -1;
+      const isOverdue = !isPaid && st.indexOf('jatuh tempo') !== -1;
+      return { pinjaman, fee15, total, isPaid, isOverdue };
+    }
+
+    function computeLoanMetrics_(items) {
+      let modal = 0, fee = 0, kembali = 0, piutang = 0, overdueNominal = 0;
+      let countLunas = 0, countAman = 0, countTempo = 0;
+      const overdueItems = [];
+
+      (items || []).forEach(item => {
+        const c = classifyLoanItem_(item);
+        modal += c.pinjaman;
+        fee += c.fee15;
+        if (c.isPaid) {
+          kembali += c.total;
+          countLunas++;
+        } else {
+          piutang += c.total;
+          if (c.isOverdue) {
+            countTempo++;
+            overdueNominal += c.total;
+            overdueItems.push(item);
+          } else {
+            countAman++;
+          }
+        }
+      });
+
+      const omzet = modal + fee;
+      const returnPct = omzet > 0 ? Math.min(100, Math.round((kembali / omzet) * 100)) : 0;
+      return { modal, fee, kembali, piutang, omzet, returnPct, overdueNominal, overdueItems, countLunas, countAman, countTempo };
+    }
+
+    function showNotification(title, desc) {
+      if (!$('notification')) return;
+      $('notifTitle').textContent = title;
+      $('notifDesc').textContent = desc;
+      clearTimeout(notifTimeout);
+      $('notification').classList.add('show');
+      notifTimeout = setTimeout(() => $('notification').classList.remove('show'), 3200);
+    }
+
+    function applyTheme(theme) {
+      const isDark = theme === 'dark';
+      if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      else document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', theme);
+      $('iconSun').style.display = isDark ? 'block' : 'none';
+      $('iconMoon').style.display = isDark ? 'none' : 'block';
+      $('btnThemeText').textContent = isDark ? 'Mode Terang' : 'Mode Gelap';
+      if (globalLoans.length) initChart();
+    }
+
+    function toggleTheme() {
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+
+    function toggleSidebarCollapse() {
+      document.body.classList.toggle('sidebar-collapsed');
+      localStorage.setItem('gz_sidebar_collapsed', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
+    }
+
+    function openMobileSidebar() {
+      $('sidebar').classList.add('mobile-open');
+      $('sidebarOverlay').classList.add('show');
+    }
+
+    function closeMobileSidebar() {
+      $('sidebar').classList.remove('mobile-open');
+      $('sidebarOverlay').classList.remove('show');
+    }
+
+    function switchView(view) {
+      closeMobileSidebar();
+      const views = {
+        dashboard: ['Dashboard Pinjaman', 'Monitoring modal keluar, piutang beredar, dan jatuh tempo'],
+        keuntungan: ['Keuntungan & Sedekah', 'Rincian alokasi jasa 15% (Pengelola 10%, Sedekah 3%, Darurat 2%)'],
+        ai: ['Asisten AI Finansial', 'Audit likuiditas, konsultasi Gemini AI, dan pengingat jatuh tempo'],
+        admin: ['Pengaturan Admin', 'Kelola identitas aplikasi, tanda tangan kuitansi, API Key, dan PIN']
+      };
+      Object.keys(views).forEach(v => {
+        if ($(`section-${v}`)) $(`section-${v}`).style.display = v === view ? 'block' : 'none';
+        if ($(`nav-${v}`)) $(`nav-${v}`).classList.toggle('active', v === view);
+        if ($(`mb-nav-${v}`)) $(`mb-nav-${v}`).classList.toggle('active', v === view);
+      });
+      if (views[view]) {
+        $('headerTitle').textContent = views[view][0];
+        $('headerSubtitle').textContent = views[view][1];
+      }
+      if (view === 'ai') {
+        refreshAIInsights();
+        checkGeminiConnectionStatus();
+      }
+    }
+
+    /* PIN & CAT MASCOT */
+    function getCurrentPin() { return localStorage.getItem('gz_pin') || '200299'; }
+
+    function updateCatMascotState(state, pinLength = 0) {
+      const catBox = $('catMascotBox');
+      const catHead = $('cat-head');
+      const catPupils = $('cat-pupils');
+      const eyesOpen = $('cat-eyes-open');
+      const eyesHappy = $('cat-eyes-happy');
+      const browLeft = $('cat-brow-left');
+      const browRight = $('cat-brow-right');
+      const mouth = $('cat-mouth');
+      const dotsContainer = $('pinDotsContainer');
+      if (!catBox) return;
+
+      catBox.classList.remove('cat-cover', 'cat-success', 'cat-error');
+      dotsContainer.classList.remove('pin-dots-error');
+
+      if (state === 'typing') {
+        catBox.classList.add('cat-cover');
+        eyesOpen.style.display = 'block';
+        eyesHappy.style.display = 'none';
+        catPupils.style.transform = `translate(${(pinLength - 3) * 1.4}px, 2px)`;
+        catHead.style.transform = `rotate(${(pinLength - 3) * 1.5}deg)`;
+        mouth.setAttribute('d', 'M 76 83 Q 80 88 84 83 Q 80 80 76 83');
+      } else if (state === 'success') {
+        catBox.classList.add('cat-success');
+        eyesOpen.style.display = 'none';
+        eyesHappy.style.display = 'block';
+        catHead.style.transform = 'rotate(0deg)';
+        mouth.setAttribute('d', 'M 69 81 Q 80 95 91 81');
+      } else if (state === 'error') {
+        catBox.classList.add('cat-error');
+        dotsContainer.classList.add('pin-dots-error');
+        eyesOpen.style.display = 'block';
+        eyesHappy.style.display = 'none';
+        catPupils.style.transform = 'translate(0px, 0px)';
+        catHead.style.transform = 'rotate(0deg)';
+        browLeft.setAttribute('d', 'M 52 45 L 70 52');
+        browRight.setAttribute('d', 'M 108 45 L 90 52');
+        mouth.setAttribute('d', 'M 71 87 Q 75.5 82 80 86 Q 84.5 82 89 87');
+      } else {
+        eyesOpen.style.display = 'block';
+        eyesHappy.style.display = 'none';
+        catPupils.style.transform = 'translate(0px, 0px)';
+        catHead.style.transform = 'rotate(0deg)';
+        browLeft.setAttribute('d', 'M 52 49 Q 62 46 70 49');
+        browRight.setAttribute('d', 'M 90 49 Q 98 46 108 49');
+        mouth.setAttribute('d', 'M 71 82 Q 75.5 87 80 82 Q 84.5 87 89 82');
+      }
+    }
+
+    function updatePinDots(status = 'normal') {
+      for (let i = 0; i < 6; i++) {
+        const dot = $(`dot-${i}`);
+        dot.className = 'pin-dot';
+        if (status === 'error') dot.classList.add('error');
+        else if (status === 'success') dot.classList.add('success');
+        else if (i < enteredPin.length) dot.classList.add('active');
+      }
+    }
+
+    function pressPin(num) {
+      if (enteredPin.length < 6) {
+        enteredPin += num;
+        updatePinDots();
+        updateCatMascotState('typing', enteredPin.length);
+        if (enteredPin.length === 6) setTimeout(verifyPin, 150);
+      }
+    }
+
+    function deletePin() {
+      if (enteredPin.length > 0) {
+        enteredPin = enteredPin.slice(0, -1);
+        updatePinDots();
+        $('pinErrorMsg').textContent = '';
+        updateCatMascotState(enteredPin.length === 0 ? 'idle' : 'typing', enteredPin.length);
+      }
+    }
+
+    function clearPin() {
+      enteredPin = '';
+      updatePinDots();
+      $('pinErrorMsg').textContent = '';
+      updateCatMascotState('idle', 0);
+    }
+
+    function verifyPin() {
+      if (enteredPin === getCurrentPin()) {
+        sessionStorage.setItem('gz_authenticated', 'true');
+        updatePinDots('success');
+        updateCatMascotState('success', 6);
+        setTimeout(() => {
+          $('pinModal').classList.add('hidden');
+          $('mainAppWrapper').classList.remove('locked');
+          showNotification('Akses Diberikan', 'Selamat datang di Usaha Gen Z');
+        }, 420);
+      } else {
+        $('pinErrorMsg').textContent = 'PIN Salah! Silakan ulangi';
+        updatePinDots('error');
+        updateCatMascotState('error', 0);
+        setTimeout(() => {
+          enteredPin = '';
+          updatePinDots('normal');
+          updateCatMascotState('idle', 0);
+          $('pinErrorMsg').textContent = '';
+        }, 720);
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      const pinModal = $('pinModal');
+      if (pinModal && !pinModal.classList.contains('hidden')) {
+        if (e.key >= '0' && e.key <= '9') { e.preventDefault(); pressPin(e.key); }
+        else if (e.key === 'Backspace') { e.preventDefault(); deletePin(); }
+        else if (e.key === 'Escape') { e.preventDefault(); clearPin(); }
+      }
+    });
+
+    /* INIT & ADMIN */
+    window.onload = function() {
+      $('currentYearFooter').textContent = new Date().getFullYear();
+      if (localStorage.getItem('gz_sidebar_collapsed') === '1') document.body.classList.add('sidebar-collapsed');
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      if (sessionStorage.getItem('gz_authenticated') === 'true') {
+        $('pinModal').classList.add('hidden');
+        $('mainAppWrapper').classList.remove('locked');
+      }
+      originalReceiptHTML = $('receiptContent').innerHTML;
+      loadAdminConfig();
+      loadData();
+      checkGeminiConnectionStatus();
+    };
+
+    function loadAdminConfig() {
+      const adminName = localStorage.getItem('gz_admin_name') || DEFAULT_CONFIG.adminName;
+      const logoImage = localStorage.getItem('gz_logo_image') || DEFAULT_CONFIG.logoImage;
+      const logoText = localStorage.getItem('gz_logo_text') || DEFAULT_CONFIG.logoText;
+      const brandTitle = localStorage.getItem('gz_brand_title') || DEFAULT_CONFIG.brandTitle;
+
+      $('adminNameDisplay').textContent = adminName;
+      $('sidebarAppName').textContent = brandTitle;
+      $('footerBrandName').textContent = brandTitle;
+      $('adminNameInput').value = adminName;
+      $('logoTextInput').value = logoText;
+      $('brandTitleInput').value = brandTitle;
+      if ($('catCollarText')) $('catCollarText').textContent = logoText;
+
+      const logoHTML = logoImage ? `<img src="${logoImage}" alt="Logo">` : escapeHTML(logoText);
+      $('sidebarBrandMark').innerHTML = logoHTML;
+      $('adminLogoPreview').innerHTML = logoHTML;
+      if ($('receiptLogoBox')) $('receiptLogoBox').innerHTML = logoHTML;
+    }
+
+    function clearAdminAsset(storageKey) {
+      localStorage.removeItem(storageKey);
+      loadAdminConfig();
+      showNotification('Direset', 'Pengaturan dikembalikan ke bawaan.');
+    }
+
+    function saveAdminConfig(event) {
+      event.preventDefault();
+      localStorage.setItem('gz_admin_name', $('adminNameInput').value.trim());
+      localStorage.setItem('gz_logo_text', $('logoTextInput').value.trim());
+      localStorage.setItem('gz_brand_title', $('brandTitleInput').value.trim());
+
+      const filesToProcess = [];
+      if ($('logoImageInput').files[0]) filesToProcess.push({ file: $('logoImageInput').files[0], key: 'gz_logo_image' });
+      if ($('adminSignatureInput').files[0]) filesToProcess.push({ file: $('adminSignatureInput').files[0], key: 'gz_admin_signature' });
+
+      if (!filesToProcess.length) {
+        loadAdminConfig();
+        showNotification('Tersimpan', 'Identitas aplikasi diperbarui.');
+        return;
+      }
+
+      let done = 0;
+      filesToProcess.forEach(item => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          localStorage.setItem(item.key, e.target.result);
+          if (++done === filesToProcess.length) {
+            loadAdminConfig();
+            showNotification('Tersimpan', 'Identitas & gambar berhasil disimpan.');
+          }
+        };
+        reader.readAsDataURL(item.file);
+      });
+    }
+
+    function changePinAction() {
+      const oldPin = $('oldPinInput').value.trim();
+      const newPin = $('newPinInput').value.trim();
+      if (oldPin !== getCurrentPin()) return showNotification('Gagal', 'PIN Lama tidak sesuai.');
+      if (!newPin || newPin.length !== 6 || isNaN(newPin)) return showNotification('Format Salah', 'PIN Baru harus 6 digit angka.');
+      localStorage.setItem('gz_pin', newPin);
+      google.script.run.sendResetNotification(localStorage.getItem('gz_admin_name') || DEFAULT_CONFIG.adminName);
+      $('oldPinInput').value = '';
+      $('newPinInput').value = '';
+      showNotification('Berhasil', 'PIN keamanan diperbarui & notifikasi email dikirim.');
+    }
+
+    /* DATA & DASHBOARD */
+    function manualRefreshData() {
+      showNotification('Sinkronisasi', 'Memuat ulang data dari Spreadsheet...');
+      loadData();
+    }
+
+    function loadData() {
+      $('syncIcon')?.classList.add('spin-icon');
+      google.script.run
+        .withSuccessHandler(data => {
+          $('syncIcon')?.classList.remove('spin-icon');
+          globalLoans = data.loans || [];
+          globalMonths = data.monthNames || [];
+          $('syncStatusText').textContent = `${globalLoans.length} Transaksi Aktif`;
+          populateMonthDropdowns();
+          initChart();
+          updateDashboard();
+          renderKSTable();
+          updateSedekahWidget();
+          refreshAIInsights();
+        })
+        .withFailureHandler(() => {
+          $('syncIcon')?.classList.remove('spin-icon');
+          $('syncStatusText').textContent = 'Gagal terhubung ke server';
+          showNotification('Koneksi Gagal', 'Tidak dapat mengambil data Spreadsheet.');
+        })
+        .getAppData();
+    }
+
+    function populateMonthDropdowns() {
+      const filterSelect = $('monthFilter');
+      const prevSelected = filterSelect.value || 'ALL';
+      const inputSelect = $('inputBulan');
+      const editSelect = $('editBulan');
+
+      filterSelect.innerHTML = '<option value="ALL">Semua Bulan</option>';
+      inputSelect.innerHTML = '';
+      if (editSelect) editSelect.innerHTML = '';
+
+      globalMonths.forEach(bulan => {
+        const opt = `<option value="${escapeHTML(bulan)}">${escapeHTML(bulan)}</option>`;
+        filterSelect.innerHTML += opt;
+        inputSelect.innerHTML += opt;
+        if (editSelect) editSelect.innerHTML += opt;
+      });
+
+      if (prevSelected !== 'ALL' && globalMonths.includes(prevSelected)) filterSelect.value = prevSelected;
+      if (globalMonths.length > 0) inputSelect.value = globalMonths[globalMonths.length - 1];
+    }
+
+    function onMonthChange() {
+      const selected = $('monthFilter').value;
+      showNotification('Periode Diubah', selected === 'ALL' ? 'Menampilkan semua bulan' : `Periode: Bulan ${selected}`);
+      updateDashboard();
+      refreshAIInsights();
+    }
+
+    function updateDashboard() {
+      const selectedMonth = $('monthFilter').value;
+      currentMonthData = selectedMonth === 'ALL' ? globalLoans : globalLoans.filter(i => i.bulan === selectedMonth);
+
+      $('printMonthLabel').textContent = `Periode Laporan: ${selectedMonth === 'ALL' ? 'Semua Bulan' : 'Bulan ' + selectedMonth}`;
+      $('printDate').textContent = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      const m = computeLoanMetrics_(currentMonthData);
+
+      $('grandTotal').textContent = `Rp ${formatRupiah(m.omzet)}`;
+      $('heroReturnPct').textContent = `${m.returnPct}% Kembali`;
+      $('heroReturnBar').style.width = `${m.returnPct}%`;
+
+      $('totalPinjaman').textContent = `Rp ${formatRupiah(m.modal)}`;
+      $('totalKembali').textContent = `Rp ${formatRupiah(m.kembali)}`;
+      $('totalPiutang').textContent = `Rp ${formatRupiah(m.piutang)}`;
+      $('riskHighVal').textContent = `${m.countTempo} Debitur`;
+      $('riskHighNominal').textContent = `Rp ${formatRupiah(m.overdueNominal)}`;
+      $('riskLowSummary').textContent = `Aman: ${m.countAman} Debitur`;
+
+      $('pillCountLunas').textContent = `Lunas: ${m.countLunas}`;
+      $('pillCountAman').textContent = `Aman: ${m.countAman}`;
+      $('pillCountTempo').textContent = `Jatuh Tempo: ${m.countTempo}`;
+      $('pillCountTotal').textContent = `Total: ${currentMonthData.length}`;
+
+      renderUrgentOverdueBanner(m.overdueItems);
+
+      $('searchInput').value = '';
+      currentStatusFilter = 'ALL';
+      updateFilterPillsUI();
+      renderLoansView(currentMonthData);
+    }
+
+    function buildWAMessage_(item) {
+      const brandTitle = localStorage.getItem('gz_brand_title') || DEFAULT_CONFIG.brandTitle;
+      const total = (Number(item.pinjaman) || 0) + (Number(item.fee15) || 0);
+      return `Halo Kak ${item.nama}, izin menginformasikan dari ${brandTitle} terkait pinjaman periode ${item.bulan} (Tgl ${item.tgl}) sebesar Rp ${formatRupiah(item.pinjaman)} + jasa Rp ${formatRupiah(item.fee15)} (Total Rp ${formatRupiah(total)}) telah memasuki masa jatuh tempo. Mohon konfirmasinya jika sudah melakukan pembayaran. Terima kasih.`;
+    }
+
+    function renderUrgentOverdueBanner(overdueItems) {
+      const banner = $('urgentOverdueBanner');
+      const listEl = $('urgentOverdueList');
+      if (!banner || !listEl) return;
+
+      if (!overdueItems || !overdueItems.length) {
+        banner.classList.remove('show');
+        listEl.innerHTML = '';
+        return;
+      }
+
+      banner.classList.add('show');
+      $('urgentBadgeCount').textContent = `${overdueItems.length} Debitur`;
+
+      listEl.innerHTML = overdueItems.map(item => {
+        const total = (Number(item.pinjaman) || 0) + (Number(item.fee15) || 0);
+        const waMsg = encodeURIComponent(buildWAMessage_(item));
+        return `
+          <div class="urgent-chip-card">
+            <div style="min-width:0;">
+              <div style="font-size:13px; font-weight:800; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px;">${escapeHTML(item.nama)}</div>
+              <div class="num-tab" style="font-size:11.5px; font-weight:700; color:var(--sakit-text);">Rp ${formatRupiah(total)}</div>
+            </div>
+            <div style="display:flex; gap:5px;">
+              <button type="button" class="btn btn-ghost btn-xs" style="padding:0 8px;" onclick="copyWAReminder('${waMsg}', '${escapeHTML(item.nama)}')">WA</button>
+              <button type="button" class="btn btn-primary btn-xs" style="padding:0 9px;" onclick="markPaid('${escapeHTML(item.bulan)}', '${escapeHTML(String(item.no))}', this)">Lunas</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterStatus(status) {
+      currentStatusFilter = status;
+      updateFilterPillsUI();
+      applyFilters();
+    }
+
+    function updateFilterPillsUI() {
+      ['ALL', 'Jatuh Tempo', 'Aman', 'Lunas'].forEach(s => {
+        if ($(`pill-${s}`)) $(`pill-${s}`).classList.toggle('active', currentStatusFilter === s);
+      });
+    }
+
+    function applyFilters() {
+      const query = ($('searchInput').value || '').toLowerCase().trim();
+      const filtered = currentMonthData.filter(item => {
+        const matchQuery = !query || item.nama.toLowerCase().includes(query) || String(item.catatan || '').toLowerCase().includes(query) || item.bulan.toLowerCase().includes(query);
+        const c = classifyLoanItem_(item);
+        if (currentStatusFilter === 'Jatuh Tempo') return matchQuery && c.isOverdue;
+        if (currentStatusFilter === 'Aman') return matchQuery && !c.isOverdue && !c.isPaid;
+        if (currentStatusFilter === 'Lunas') return matchQuery && c.isPaid;
+        return matchQuery;
+      });
+      renderLoansView(filtered);
+    }
+
+    function getInitials(name) {
+      const p = String(name || '?').trim().split(/\s+/);
+      return p.length === 1 ? p[0].substring(0, 2).toUpperCase() : (p[0][0] + p[1][0]).toUpperCase();
+    }
+
+    function renderLoansView(dataArray) {
+      const tbody = $('loanTableBody');
+      const tfoot = $('loanTableFoot');
+      const mobileList = $('mobileLoanList');
+      tbody.innerHTML = '';
+      tfoot.innerHTML = '';
+      if (mobileList) mobileList.innerHTML = '';
+
+      if (!dataArray || !dataArray.length) {
+        tbody.innerHTML = '<tr><td colspan="11" class="empty-msg">Tidak ada data peminjam yang sesuai filter.</td></tr>';
+        if (mobileList) mobileList.innerHTML = '<div class="empty-msg">Tidak ada data peminjam yang sesuai filter.</div>';
+        return;
+      }
+
+      let sumPinjaman = 0, sumFee = 0;
+      dataArray.forEach((item, idx) => {
+        const c = classifyLoanItem_(item);
+        sumPinjaman += c.pinjaman;
+        sumFee += c.fee15;
+
+        const safeNama = escapeHTML(item.nama);
+        const safeCatatan = escapeHTML(item.catatan);
+        const statusBadge = c.isPaid
+          ? '<span class="badge badge-hadir"><span class="st-dot"></span>Lunas</span>'
+          : (c.isOverdue
+            ? '<span class="badge badge-sakit"><span class="st-dot"></span>Jatuh Tempo</span>'
+            : `<span class="badge badge-izin"><span class="st-dot"></span>${escapeHTML(item.sisa)}</span>`);
+
+        const riskBadge = c.isOverdue
+          ? '<span class="badge badge-sakit">Tinggi</span>'
+          : (c.isPaid ? '<span class="badge badge-off">Selesai</span>' : '<span class="badge badge-cuti">Rendah</span>');
+
+        const itemJson = encodeURIComponent(JSON.stringify(item));
+        const evJson = encodeURIComponent(JSON.stringify(item.evidence || []));
+        const hasEvidence = item.evidence && item.evidence.length > 0;
+        const evBtn = hasEvidence
+          ? `<button type="button" class="btn-act" onclick="openEvidenceModal('${evJson}', '${safeNama}')">Bukti (${item.evidence.length})</button>`
+          : '<span style="color:var(--text-muted);">—</span>';
+
+        const editBtn = `<button type="button" class="btn-act" onclick="openEditModal('${itemJson}')">Ubah</button>`;
+        const rcptBtn = `<button type="button" class="btn-act" onclick="openReceipt('${itemJson}')">Kuitansi</button>`;
+        const delBtn = `<button type="button" class="btn-act act-del" onclick="openDeleteModal('${escapeHTML(item.bulan)}', '${escapeHTML(String(item.no))}', '${safeNama}')">Hapus</button>`;
+        const paidBtn = c.isPaid ? '' : `<button type="button" class="btn-act act-in" onclick="markPaid('${escapeHTML(item.bulan)}', '${escapeHTML(String(item.no))}', this)">Lunas</button>`;
+
+        tbody.insertAdjacentHTML('beforeend', `
+          <tr class="${c.isOverdue ? 'row-late' : ''}">
+            <td class="col-center num-tab" style="color:var(--text-muted);">${idx + 1}</td>
+            <td class="col-center"><span class="badge badge-sage">${escapeHTML(item.bulan)}</span></td>
+            <td class="num-tab">${escapeHTML(item.tgl)}</td>
+            <td class="col-center">${statusBadge}</td>
+            <td class="col-center">${riskBadge}</td>
+            <td>
+              <div class="member-cell">
+                <span class="avatar" onclick="openBorrowerDetail('${itemJson}')">${escapeHTML(getInitials(item.nama))}</span>
+                <button type="button" class="member-link" onclick="openBorrowerDetail('${itemJson}')">${safeNama}</button>
+              </div>
+            </td>
+            <td class="col-right num-tab">Rp ${formatRupiah(c.pinjaman)}</td>
+            <td class="col-right num-tab" style="font-weight:700; color:var(--accent-text);">Rp ${formatRupiah(c.fee15)}</td>
+            <td style="color:var(--text-secondary); max-width:190px; overflow:hidden; text-overflow:ellipsis;">${safeCatatan || '<span style="color:var(--text-muted);">—</span>'}</td>
+            <td class="col-center no-print">${evBtn}</td>
+            <td style="text-align:right;" class="no-print">${paidBtn}${rcptBtn}${editBtn}${delBtn}</td>
+          </tr>
+        `);
+
+        if (mobileList) {
+          mobileList.insertAdjacentHTML('beforeend', `
+            <div class="m-loan-card ${c.isOverdue ? 'is-late' : ''}">
+              <div class="m-loan-top">
+                <div class="m-loan-identity" onclick="openBorrowerDetail('${itemJson}')">
+                  <span class="avatar">${escapeHTML(getInitials(item.nama))}</span>
+                  <div style="min-width:0;">
+                    <div class="m-loan-name">${safeNama}</div>
+                    <div class="m-loan-meta">${escapeHTML(item.bulan)} • ${escapeHTML(item.tgl)}</div>
+                  </div>
+                </div>
+                <div>${statusBadge}</div>
+              </div>
+              <div class="m-loan-amounts" onclick="openBorrowerDetail('${itemJson}')">
+                <div><div class="m-amt-label">Pokok Pinjaman</div><div class="m-amt-val">Rp ${formatRupiah(c.pinjaman)}</div></div>
+                <div style="text-align:right;"><div class="m-amt-label">Jasa (15%)</div><div class="m-amt-val" style="color:var(--accent-text);">Rp ${formatRupiah(c.fee15)}</div></div>
+              </div>
+              ${safeCatatan ? `<div class="m-loan-note">Catatan: ${safeCatatan}</div>` : ''}
+              <div class="m-loan-actions">${paidBtn}${rcptBtn}${hasEvidence ? evBtn : ''}${editBtn}${delBtn}</div>
+            </div>
+          `);
+        }
+      });
+
+      if (mobileList) {
+        mobileList.insertAdjacentHTML('beforeend', `
+          <div class="m-loan-summary-bar">
+            <span style="color:var(--text-muted);">Total (${dataArray.length} Data)</span>
+            <span class="num-tab" style="color:var(--accent-text);">Rp ${formatRupiah(sumPinjaman + sumFee)}</span>
+          </div>
+        `);
+      }
+
+      tfoot.innerHTML = `
+        <tr>
+          <td colspan="6" class="col-right" style="font-size:11.5px; text-transform:uppercase; color:var(--text-muted);">Total Ditampilkan (${dataArray.length} Data):</td>
+          <td class="col-right num-tab">Rp ${formatRupiah(sumPinjaman)}</td>
+          <td class="col-right num-tab" style="color:var(--accent-text);">Rp ${formatRupiah(sumFee)}</td>
+          <td colspan="3" class="no-print"></td>
+        </tr>
+      `;
+    }
+
+    function openBorrowerDetail(itemStr) {
+      const item = JSON.parse(decodeURIComponent(itemStr));
+      const c = classifyLoanItem_(item);
+      const itemJson = encodeURIComponent(JSON.stringify(item));
+
+      $('borrowerDetailBody').innerHTML = `
+        <div class="detail-hero">
+          <div class="detail-avatar-lg">${escapeHTML(getInitials(item.nama))}</div>
+          <div style="min-width:0; flex:1;">
+            <div style="font-size:16px; font-weight:700;">${escapeHTML(item.nama)}</div>
+            <div style="font-size:12.5px; color:var(--text-muted);">Periode ${escapeHTML(item.bulan)} • No. #${escapeHTML(String(item.no))}</div>
+          </div>
+        </div>
+        <div>
+          <div class="info-line"><span style="color:var(--text-muted);">Tanggal Pinjam</span><strong class="num-tab">${escapeHTML(item.tgl)}</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Status Pinjaman</span><strong>${escapeHTML(item.sisa)}</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Pokok Pinjaman</span><strong class="num-tab">Rp ${formatRupiah(c.pinjaman)}</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Jasa Layanan (15%)</span><strong class="num-tab" style="color:var(--accent-text);">Rp ${formatRupiah(c.fee15)}</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Total Kewajiban</span><strong class="num-tab" style="font-size:15.5px;">Rp ${formatRupiah(c.total)}</strong></div>
+          <div class="info-line"><span style="color:var(--text-muted);">Catatan</span><span>${escapeHTML(item.catatan) || '—'}</span></div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; padding-top:4px;">
+          <button type="button" class="btn btn-primary btn-xs" style="flex:1;" onclick="closeModalById('borrowerDetailModal'); openReceipt('${itemJson}')">Buka Kuitansi</button>
+          <button type="button" class="btn btn-ghost btn-xs" style="flex:1;" onclick="closeModalById('borrowerDetailModal'); openEditModal('${itemJson}')">Ubah Data</button>
+          ${!c.isPaid ? `<button type="button" class="btn btn-sage btn-xs" style="flex:1;" onclick="closeModalById('borrowerDetailModal'); markPaid('${escapeHTML(item.bulan)}', '${escapeHTML(String(item.no))}')">Tandai Lunas</button>` : ''}
+        </div>
+      `;
+      openModalById('borrowerDetailModal');
+    }
+
+    function showCardDetails(type, title) {
+      const filtered = currentMonthData.filter(item => {
+        const c = classifyLoanItem_(item);
+        if (type === 'LUNAS') return c.isPaid;
+        if (type === 'PIUTANG') return !c.isPaid;
+        if (type === 'AMAN') return !c.isOverdue && !c.isPaid;
+        if (type === 'JATUH_TEMPO') return c.isOverdue;
+        return true;
+      });
+
+      const nominalLabel = type === 'MODAL' ? 'Pokok Pinjaman' : 'Total (Pokok + Jasa)';
+      const tbody = $('detailModalBody');
+      tbody.innerHTML = '';
+      let total = 0;
+
+      if (!filtered.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="empty-msg">Tidak ada rincian data untuk kategori ini.</td></tr>';
+      } else {
+        filtered.forEach((item, i) => {
+          const c = classifyLoanItem_(item);
+          const val = type === 'MODAL' ? c.pinjaman : c.total;
+          total += val;
+          const bCls = c.isPaid ? 'badge-hadir' : (c.isOverdue ? 'badge-sakit' : 'badge-izin');
+          tbody.insertAdjacentHTML('beforeend', `
+            <tr>
+              <td class="col-center num-tab" style="color:var(--text-muted);">${i + 1}</td>
+              <td><strong>${escapeHTML(item.nama)}</strong></td>
+              <td class="col-center"><span class="badge badge-sage">${escapeHTML(item.bulan)}</span></td>
+              <td class="col-center"><span class="badge ${bCls}">${escapeHTML(item.sisa)}</span></td>
+              <td class="col-right num-tab">Rp ${formatRupiah(val)}</td>
+            </tr>
+          `);
+        });
+      }
+
+      $('detailModalFoot').innerHTML = `
+        <tr>
+          <td colspan="4" class="col-right" style="font-size:11.5px; text-transform:uppercase; color:var(--text-muted);">Total ${nominalLabel}:</td>
+          <td class="col-right num-tab" style="color:var(--accent-text);">Rp ${formatRupiah(total)}</td>
+        </tr>
+      `;
+      $('detailModalTitle').textContent = title;
+      $('detailModalSubtitle').textContent = `${filtered.length} transaksi ditemukan`;
+      openModalById('detailCardModal');
+    }
+
+    /* CHART */
+    function toggleChartVisibility() {
+      isChartVisible = !isChartVisible;
+      $('chartBodyWrap').style.display = isChartVisible ? 'block' : 'none';
+      $('btnToggleChart').textContent = isChartVisible ? 'Sembunyikan' : 'Tampilkan';
+    }
+
+    function initChart() {
+      const canvas = $('financeChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const months = [...new Set(globalLoans.map(i => i.bulan))];
+      const dataModal = months.map(m => globalLoans.filter(i => i.bulan === m).reduce((s, x) => s + (Number(x.pinjaman) || 0), 0));
+      const dataFee = months.map(m => globalLoans.filter(i => i.bulan === m).reduce((s, x) => s + (Number(x.fee15) || 0), 0));
+
+      if (chartInstance) chartInstance.destroy();
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+      Chart.defaults.color = isDark ? '#87a394' : '#547160';
+
+      chartInstance = new Chart(ctx, {
+        data: {
+          labels: months,
+          datasets: [
+            { type: 'bar', label: 'Modal Pokok', data: dataModal, backgroundColor: isDark ? 'rgba(52, 211, 153, 0.25)' : 'rgba(16, 185, 129, 0.22)', borderColor: '#10b981', borderWidth: 1, borderRadius: 6, order: 2 },
+            { type: 'line', label: 'Jasa (15%)', data: dataFee, borderColor: isDark ? '#34d399' : '#047857', backgroundColor: isDark ? '#34d399' : '#047857', borderWidth: 2.5, pointRadius: 3, tension: 0.35, order: 1 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              border: { display: false },
+              grid: { color: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(17,34,24,0.06)' },
+              ticks: { callback: v => 'Rp ' + (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'Jt' }
+            },
+            x: { grid: { display: false }, border: { display: false } }
+          }
+        }
+      });
+    }
+
+    /* KEUNTUNGAN */
+    function updateSedekahWidget() {
+      const totalFeeGlobal = globalLoans.reduce((s, i) => s + (Number(i.fee15) || 0), 0);
+      const pengelola = totalFeeGlobal * (10 / 15);
+      const sedekah = totalFeeGlobal * (3 / 15);
+      const darurat = totalFeeGlobal * (2 / 15);
+
+      $('ksCardTotalFee').textContent = `Rp ${formatRupiah(totalFeeGlobal)}`;
+      $('ksCardPengelola').textContent = `Rp ${formatRupiah(pengelola)}`;
+      $('targetSedekahNominal').textContent = `Rp ${formatRupiah(sedekah)}`;
+      $('ksCardDarurat').textContent = `Rp ${formatRupiah(darurat)}`;
+
+      const feeLunas = globalLoans.filter(i => classifyLoanItem_(i).isPaid).reduce((s, i) => s + (Number(i.fee15) || 0), 0);
+      const pct = sedekah > 0 ? Math.min(Math.round(((feeLunas * (3 / 15)) / sedekah) * 100), 100) : 0;
+      $('progressSedekahPercent').textContent = `${pct}% Terkumpul`;
+      $('sedekahProgressBar').style.width = `${pct}%`;
+    }
+
+    function renderKSTable() {
+      const tbody = $('ksTableBody');
+      tbody.innerHTML = '';
+      $('ksTableFoot').innerHTML = '';
+
+      const months = [...new Set(globalLoans.map(i => i.bulan))];
+      if (!months.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-msg">Belum ada data pembagian jasa.</td></tr>';
+        return;
+      }
+
+      let sP = 0, sF = 0, s10 = 0, s3 = 0, s2 = 0;
+      months.forEach((bulan, idx) => {
+        const list = globalLoans.filter(i => i.bulan === bulan);
+        const totP = list.reduce((s, i) => s + (Number(i.pinjaman) || 0), 0);
+        const totF = list.reduce((s, i) => s + (Number(i.fee15) || 0), 0);
+        const p10 = totF * (10 / 15), p3 = totF * (3 / 15), p2 = totF * (2 / 15);
+        sP += totP; sF += totF; s10 += p10; s3 += p3; s2 += p2;
+
+        tbody.insertAdjacentHTML('beforeend', `
+          <tr>
+            <td class="col-center num-tab" style="color:var(--text-muted);">${idx + 1}</td>
+            <td class="col-center"><span class="badge badge-sage">${escapeHTML(bulan)}</span></td>
+            <td class="col-right num-tab">Rp ${formatRupiah(totP)}</td>
+            <td class="col-right num-tab" style="font-weight:700; color:var(--accent-text);">Rp ${formatRupiah(totF)}</td>
+            <td class="col-right num-tab">Rp ${formatRupiah(p10)}</td>
+            <td class="col-right num-tab" style="color:var(--cuti-text); font-weight:600;">Rp ${formatRupiah(p3)}</td>
+            <td class="col-right num-tab" style="color:var(--izin-text); font-weight:600;">Rp ${formatRupiah(p2)}</td>
+          </tr>
+        `);
+      });
+
+      $('ksTableFoot').innerHTML = `
+        <tr>
+          <td colspan="2" class="col-right" style="font-size:11.5px; text-transform:uppercase; color:var(--text-muted);">Akumulasi Total:</td>
+          <td class="col-right num-tab">Rp ${formatRupiah(sP)}</td>
+          <td class="col-right num-tab" style="color:var(--accent-text);">Rp ${formatRupiah(sF)}</td>
+          <td class="col-right num-tab">Rp ${formatRupiah(s10)}</td>
+          <td class="col-right num-tab" style="color:var(--cuti-text);">Rp ${formatRupiah(s3)}</td>
+          <td class="col-right num-tab" style="color:var(--izin-text);">Rp ${formatRupiah(s2)}</td>
+        </tr>
+      `;
+    }
+
+    /* CRUD */
+    function openModalById(id) { $(id)?.classList.add('show'); }
+    function closeModalById(id) { $(id)?.classList.remove('show'); }
+    function closeModalBackdrop(e, id) { if (e.target?.classList.contains('backdrop')) closeModalById(id); }
+
+    function openAddModal() {
+      closeMobileSidebar();
+      $('debtorForm').reset();
+      $('inputTgl').value = new Date().toISOString().split('T')[0];
+      if (globalMonths.length > 0) $('inputBulan').value = globalMonths[globalMonths.length - 1];
+      openModalById('addDebtorModal');
+    }
+
+    function submitNewMonth() {
+      const val = $('newMonthInput').value.trim();
+      if (!val) return;
+      const formatted = val.charAt(0).toUpperCase() + val.slice(1).toLowerCase();
+      closeModalById('newMonthModal');
+      showNotification('Memproses', `Membuat tab bulan ${formatted}...`);
+      google.script.run
+        .withSuccessHandler(() => {
+          $('newMonthInput').value = '';
+          showNotification('Berhasil', `Tab bulan ${formatted} siap digunakan.`);
+          loadData();
+        })
+        .withFailureHandler(err => showNotification('Gagal', err.message))
+        .addNewMonthSheet(formatted);
+    }
+
+    function submitDebtorForm(e) {
+      e.preventDefault();
+      const btn = $('submitBtn');
+      btn.textContent = 'Menyimpan...';
+      btn.disabled = true;
+
+      google.script.run
+        .withSuccessHandler(() => {
+          btn.textContent = 'Simpan Data';
+          btn.disabled = false;
+          closeModalById('addDebtorModal');
+          showNotification('Tersimpan', 'Data peminjam baru berhasil ditambahkan.');
+          loadData();
+        })
+        .withFailureHandler(err => {
+          btn.textContent = 'Simpan Data';
+          btn.disabled = false;
+          showNotification('Gagal', err.message);
+        })
+        .addDebtor({
+          bulan: $('inputBulan').value,
+          tgl: $('inputTgl').value,
+          nama: $('inputNama').value,
+          pinjaman: $('inputPinjaman').value,
+          catatan: $('inputCatatan').value,
+          evidence: $('inputEvidence').value
+        });
+    }
+
+    function openEditModal(itemStr) {
+      const item = JSON.parse(decodeURIComponent(itemStr));
+      $('editBulan').value = item.bulan;
+      $('editOldBulan').value = item.bulan;
+      $('editNo').value = item.no;
+      $('editNama').value = item.nama;
+      $('editPinjaman').value = item.pinjaman;
+      $('editCatatan').value = item.catatan || '';
+
+      const container = $('editEvidenceContainer');
+      container.innerHTML = '';
+      if (item.evidence && item.evidence.length) item.evidence.forEach(addEditLinkInput);
+      else addEditLinkInput('');
+
+      const parts = String(item.tgl || '').split('-');
+      if (parts.length === 3 && MONTH_MAP[parts[1]]) {
+        $('editTgl').value = `${parts[2]}-${MONTH_MAP[parts[1]]}-${parts[0].padStart(2, '0')}`;
+      } else {
+        $('editTgl').value = new Date().toISOString().split('T')[0];
+      }
+      openModalById('editDebtorModal');
+    }
+
+    function addEditLinkInput(val = '') {
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex; gap:6px; align-items:center;';
+      div.innerHTML = `
+        <input type="url" value="${escapeHTML(val)}" required placeholder="https://..." class="field" style="flex:1;">
+        <button type="button" class="btn btn-danger-ghost btn-xs" onclick="this.parentElement.remove()">Hapus</button>
+      `;
+      $('editEvidenceContainer').appendChild(div);
+    }
+
+    function submitEditForm(e) {
+      e.preventDefault();
+      const links = [...$('editEvidenceContainer').querySelectorAll('input[type="url"]')].map(inp => inp.value.trim()).filter(Boolean);
+      if (!links.length) return showNotification('Perhatian', 'Minimal 1 link bukti wajib diisi.');
+
+      const btn = $('editSubmitBtn');
+      btn.textContent = 'Menyimpan...';
+      btn.disabled = true;
+
+      google.script.run
+        .withSuccessHandler(() => {
+          btn.textContent = 'Simpan Perubahan';
+          btn.disabled = false;
+          closeModalById('editDebtorModal');
+          showNotification('Diperbarui', 'Data peminjam berhasil diubah.');
+          loadData();
+        })
+        .withFailureHandler(err => {
+          btn.textContent = 'Simpan Perubahan';
+          btn.disabled = false;
+          showNotification('Gagal', err.message);
+        })
+        .editDebtor({
+          oldBulan: $('editOldBulan').value,
+          bulan: $('editBulan').value,
+          no: $('editNo').value,
+          tgl: $('editTgl').value,
+          nama: $('editNama').value,
+          pinjaman: $('editPinjaman').value,
+          catatan: $('editCatatan').value,
+          evidence: links.join(' ')
+        });
+    }
+
+    function markPaid(bulan, no, btnEl) {
+      if (btnEl) { btnEl.textContent = '...'; btnEl.disabled = true; }
+      google.script.run
+        .withSuccessHandler(() => {
+          showNotification('Lunas', 'Status pinjaman diubah menjadi Lunas.');
+          loadData();
+        })
+        .withFailureHandler(err => {
+          if (btnEl) { btnEl.textContent = 'Lunas'; btnEl.disabled = false; }
+          showNotification('Gagal', err.message);
+        })
+        .markAsPaid(bulan, no);
+    }
+
+    function openDeleteModal(bulan, no, nama) {
+      deleteTarget = { bulan, no };
+      $('delName').textContent = nama;
+      openModalById('deleteModal');
+    }
+
+    $('confirmDeleteBtn').addEventListener('click', function() {
+      if (!deleteTarget) return;
+      const btn = this;
+      btn.textContent = 'Menghapus...';
+      btn.disabled = true;
+      google.script.run
+        .withSuccessHandler(() => {
+          btn.textContent = 'Hapus Permanen';
+          btn.disabled = false;
+          closeModalById('deleteModal');
+          showNotification('Dihapus', 'Data pinjaman berhasil dihapus.');
+          loadData();
+        })
+        .withFailureHandler(err => {
+          btn.textContent = 'Hapus Permanen';
+          btn.disabled = false;
+          showNotification('Gagal', err.message);
+        })
+        .deleteDebtor(deleteTarget.bulan, deleteTarget.no);
+    });
+
+    function openEvidenceModal(jsonStr, debtorName) {
+      const links = JSON.parse(decodeURIComponent(jsonStr));
+      const box = $('modalLinksContainer');
+      box.innerHTML = `<div style="font-size:13px; color:var(--text-muted);">Bukti transaksi milik <strong>${debtorName}</strong>:</div>`;
+      links.forEach((url, i) => {
+        box.insertAdjacentHTML('beforeend', `
+          <div class="info-line">
+            <span style="font-weight:600;">Lampiran Bukti #${i + 1}</span>
+            <a href="${escapeHTML(url)}" target="_blank" rel="noopener" class="btn btn-primary btn-xs" style="text-decoration:none;">Buka Link &nearr;</a>
+          </div>
+        `);
+      });
+      openModalById('evidenceModal');
+    }
+
+    /* GEMINI AI */
+    let aiConversationHistory = [];
+    let isAIProcessing = false;
+
+    function saveGeminiKeyAction() {
+      const keyVal = $('geminiApiKeyInput').value.trim();
+      const btn = $('saveGeminiKeyBtn');
+      if (!keyVal) return showNotification('Perhatian', 'Masukkan API Key Gemini terlebih dahulu.');
+      btn.textContent = 'Menyimpan...';
+      btn.disabled = true;
+
+      google.script.run
+        .withSuccessHandler(() => {
+          btn.textContent = 'Simpan API Key Gemini';
+          btn.disabled = false;
+          $('geminiApiKeyInput').value = '';
+          checkGeminiConnectionStatus();
+          showNotification('Tersimpan', 'API Key Gemini disimpan. Klik Tes Koneksi untuk verifikasi.');
+        })
+        .withFailureHandler(err => {
+          btn.textContent = 'Simpan API Key Gemini';
+          btn.disabled = false;
+          showNotification('Gagal', err.message);
+        })
+        .saveGeminiApiKey(keyVal);
+    }
+
+    function testGeminiKeyAction() {
+      const btn = $('testGeminiKeyBtn');
+      btn.textContent = 'Menguji...';
+      btn.disabled = true;
+
+      google.script.run
+        .withSuccessHandler(res => {
+          btn.textContent = 'Tes Koneksi';
+          btn.disabled = false;
+          if (res && res.success) {
+            if ($('geminiEngineBadge')) $('geminiEngineBadge').textContent = 'Gemini Flash Aktif';
+            if ($('adminGeminiStatusText')) $('adminGeminiStatusText').textContent = 'Terverifikasi Aktif';
+            showNotification('Terhubung', res.message);
+          } else {
+            if ($('adminGeminiStatusText')) $('adminGeminiStatusText').textContent = 'Kunci Bermasalah';
+            showNotification('Verifikasi Gagal', (res && res.message) ? res.message : 'API Key gagal diverifikasi.');
+          }
+        })
+        .withFailureHandler(err => {
+          btn.textContent = 'Tes Koneksi';
+          btn.disabled = false;
+          showNotification('Gagal', err.message);
+        })
+        .testGeminiApiKey();
+    }
+
+    function checkGeminiConnectionStatus() {
+      google.script.run
+        .withSuccessHandler(res => {
+          const ok = Boolean(res && res.hasKey);
+          if ($('geminiEngineBadge')) $('geminiEngineBadge').textContent = ok ? 'Gemini Flash Siap' : 'Mode Lokal (Atur API Key)';
+          if ($('adminGeminiStatusText')) $('adminGeminiStatusText').textContent = ok ? 'Tersimpan' : 'Belum diatur';
+        })
+        .getGeminiApiKeyStatus();
+    }
+
+    function refreshAIInsights() {
+      const data = currentMonthData;
+      const remBox = $('aiReminderList');
+      const selected = $('monthFilter') ? $('monthFilter').value : 'ALL';
+      if ($('aiActivePeriodPill')) {
+        $('aiActivePeriodPill').textContent = selected === 'ALL' ? 'Semua Bulan' : `Bulan ${selected}`;
+      }
+
+      if (!data || !data.length) {
+        $('aiHealthScore').textContent = '0 / 100';
+        $('aiHealthLabel').textContent = 'Kosong';
+        $('aiHealthBar').style.width = '0%';
+        $('aiOverdueCount').textContent = '0 Debitur';
+        $('aiOverdueTotal').textContent = 'Potensi Dana Tertahan: Rp 0';
+        $('aiNetProfit').textContent = 'Rp 0';
+        $('aiTopDebtor').textContent = 'Pinjaman Terbesar: -';
+        remBox.innerHTML = '<div class="empty-msg">Belum ada transaksi pada periode ini.</div>';
+        return;
+      }
+
+      const m = computeLoanMetrics_(data);
+      const totalTagihanAll = m.omzet;
+      const lunasRatio = totalTagihanAll > 0 ? (m.kembali / totalTagihanAll) : 0;
+      const score = Math.max(0, Math.min(100, Math.round((lunasRatio * 85) + 15 - ((m.countTempo / data.length) * 35))));
+      const topItem = [...data].sort((a, b) => (Number(b.pinjaman) || 0) - (Number(a.pinjaman) || 0))[0];
+
+      $('aiHealthScore').textContent = `${score} / 100`;
+      $('aiHealthLabel').textContent = score >= 75 ? 'Sangat Sehat' : (score >= 45 ? 'Pantau' : 'Risiko Tinggi');
+      $('aiHealthBar').style.width = `${score}%`;
+      $('aiOverdueCount').textContent = `${m.countTempo} Debitur`;
+      $('aiOverdueTotal').textContent = `Potensi Dana Tertahan: Rp ${formatRupiah(m.overdueNominal)}`;
+      $('aiNetProfit').textContent = `Rp ${formatRupiah(m.fee * (10 / 15))}`;
+      $('aiTopDebtor').textContent = `Terbesar: ${topItem.nama} (Rp ${formatRupiah(topItem.pinjaman)})`;
+
+      if (!m.overdueItems.length) {
+        remBox.innerHTML = '<div class="empty-msg">Tidak ada pinjaman jatuh tempo pada periode ini.</div>';
+      } else {
+        const sorted = [...m.overdueItems].sort((a, b) => ((Number(b.pinjaman) || 0) + (Number(b.fee15) || 0)) - ((Number(a.pinjaman) || 0) + (Number(a.fee15) || 0)));
+        remBox.innerHTML = sorted.map((item, idx) => {
+          const totalKewajiban = (Number(item.pinjaman) || 0) + (Number(item.fee15) || 0);
+          return `
+            <div class="reminder-item">
+              <div style="min-width:0;">
+                <div style="font-size:13.5px; font-weight:700;">${idx + 1}. ${escapeHTML(item.nama)}</div>
+                <div class="num-tab" style="font-size:12px; color:var(--sakit-text); font-weight:600;">Total: Rp ${formatRupiah(totalKewajiban)} (${escapeHTML(item.bulan)})</div>
+              </div>
+              <button type="button" class="btn btn-primary btn-xs" onclick="copyWAReminder('${encodeURIComponent(buildWAMessage_(item))}', '${escapeHTML(item.nama)}')">Salin WA</button>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function copyWAReminder(encoded, name) {
+      navigator.clipboard.writeText(decodeURIComponent(encoded))
+        .then(() => showNotification('Pesan Disalin', `Template penagihan ${name} siap ditempel di WhatsApp.`))
+        .catch(() => showNotification('Gagal', 'Izin clipboard browser dibatasi.'));
+    }
+
+    function copyAITextResponse(encodedText) {
+      navigator.clipboard.writeText(decodeURIComponent(encodedText))
+        .then(() => showNotification('Disalin', 'Hasil analisis AI berhasil disalin ke clipboard.'))
+        .catch(() => showNotification('Gagal', 'Izin clipboard browser dibatasi.'));
+    }
+
+    function setAILoadingState(loading) {
+      isAIProcessing = loading;
+      const btn = $('aiSubmitBtn');
+      const input = $('aiPromptInput');
+      if (btn) {
+        btn.disabled = loading;
+        btn.textContent = loading ? 'Proses...' : 'Analisis';
+      }
+      if (input) input.disabled = loading;
+      document.querySelectorAll('.ai-chip').forEach(chip => {
+        chip.disabled = loading;
+        chip.style.opacity = loading ? '0.6' : '1';
+      });
+    }
+
+    function askAIQuick(q) {
+      if (isAIProcessing) return;
+      generateAIResponse(q);
+    }
+
+    function handleAIInput(e) {
+      e.preventDefault();
+      if (isAIProcessing) return;
+      const q = $('aiPromptInput').value.trim();
+      if (!q) return;
+      $('aiPromptInput').value = '';
+      generateAIResponse(q);
+    }
+
+    function resetAIChat() {
+      aiConversationHistory = [];
+      $('aiChatHistory').innerHTML = '<div class="ai-msg bot">Riwayat percakapan dibersihkan. Silakan pilih topik analisis atau ajukan pertanyaan baru.</div>';
+    }
+
+    function formatAIMarkdown(raw) {
+      let html = escapeHTML(raw);
+      html = html.replace(/^###\s+(.+)$/gm, '<div style="font-weight:800; font-size:14px; margin:8px 0 4px; color:var(--accent-text);">$1</div>');
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*([^*\n]+?)\*/g, '<em>$1</em>');
+      html = html.replace(/^\s*[\*\-]\s+/gm, '• ');
+      html = html.replace(/\n/g, '<br>');
+      return html;
+    }
+
+    function buildFinancialContextForGemini() {
+      const m = computeLoanMetrics_(currentMonthData);
+      const feeLunas = (currentMonthData || [])
+        .filter(i => classifyLoanItem_(i).isPaid)
+        .reduce((s, i) => s + (Number(i.fee15) || 0), 0);
+
+      const aktif = (currentMonthData || [])
+        .filter(i => !classifyLoanItem_(i).isPaid)
+        .sort((a, b) => classifyLoanItem_(b).total - classifyLoanItem_(a).total)
+        .map(d => {
+          const c = classifyLoanItem_(d);
+          return {
+            nama: d.nama,
+            bulan: d.bulan,
+            tgl: d.tgl,
+            pokok: c.pinjaman,
+            fee_15_persen: c.fee15,
+            total_tagihan: c.total,
+            status: d.sisa,
+            catatan: d.catatan || ''
+          };
+        });
+
+      const lunas = (currentMonthData || [])
+        .filter(i => classifyLoanItem_(i).isPaid)
+        .slice(-15)
+        .map(d => {
+          const c = classifyLoanItem_(d);
+          return {
+            nama: d.nama,
+            bulan: d.bulan,
+            tgl: d.tgl,
+            pokok: c.pinjaman,
+            total_dibayar: c.total
+          };
+        });
+
+      const monthsInScope = [...new Set((currentMonthData || []).map(i => i.bulan))];
+      const rekapBulanan = monthsInScope.map(bln => {
+        const sub = currentMonthData.filter(i => i.bulan === bln);
+        const sm = computeLoanMetrics_(sub);
+        return {
+          bulan: bln,
+          transaksi: sub.length,
+          modal_keluar: sm.modal,
+          jasa_15_persen: sm.fee,
+          dana_kembali: sm.kembali,
+          piutang_beredar: sm.piutang,
+          jatuh_tempo_count: sm.countTempo,
+          jatuh_tempo_nominal: sm.overdueNominal
+        };
+      });
+
+      return {
+        tanggal_hari_ini: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+        ringkasan: {
+          total_transaksi: currentMonthData.length,
+          total_modal_keluar: m.modal,
+          total_jasa_15_persen: m.fee,
+          total_omzet: m.omzet,
+          dana_sudah_kembali: m.kembali,
+          rasio_pengembalian_persen: m.returnPct,
+          piutang_beredar_belum_lunas: m.piutang,
+          jumlah_debitur_lunas: m.countLunas,
+          jumlah_debitur_aktif_aman: m.countAman,
+          jumlah_jatuh_tempo: m.countTempo,
+          nominal_jatuh_tempo: m.overdueNominal
+        },
+        alokasi_jasa: {
+          potensi_pengelola_10_persen: Math.round(m.fee * (10 / 15)),
+          potensi_sedekah_3_persen: Math.round(m.fee * (3 / 15)),
+          potensi_darurat_2_persen: Math.round(m.fee * (2 / 15)),
+          realisasi_pengelola_dari_lunas: Math.round(feeLunas * (10 / 15)),
+          realisasi_sedekah_dari_lunas: Math.round(feeLunas * (3 / 15)),
+          realisasi_darurat_dari_lunas: Math.round(feeLunas * (2 / 15))
+        },
+        rekap_per_bulan: rekapBulanan,
+        debitur_aktif_belum_lunas: aktif,
+        debitur_lunas_terbaru: lunas
+      };
+    }
+
+    function buildLocalFallbackReply(question, periodLabel) {
+      const m = computeLoanMetrics_(currentMonthData);
+      if (!currentMonthData.length) {
+        return `Belum ada transaksi pada periode <strong>${escapeHTML(periodLabel)}</strong>.`;
+      }
+
+      const q = String(question || '').toLowerCase();
+
+      const matchedDebtor = currentMonthData.find(d => q.includes(String(d.nama || '').toLowerCase()) && String(d.nama || '').trim().length >= 3);
+      if (matchedDebtor) {
+        const c = classifyLoanItem_(matchedDebtor);
+        return `<strong>Detail Debitur ${escapeHTML(matchedDebtor.nama)} (${escapeHTML(matchedDebtor.bulan)}):</strong><br>• Status: <strong>${escapeHTML(matchedDebtor.sisa)}</strong> (Tgl Pinjam: ${escapeHTML(matchedDebtor.tgl)})<br>• Pokok Pinjaman: <strong>Rp ${formatRupiah(c.pinjaman)}</strong><br>• Jasa 15%: <strong>Rp ${formatRupiah(c.fee15)}</strong><br>• Total Kewajiban: <strong>Rp ${formatRupiah(c.total)}</strong>`;
+      }
+
+      if (q.includes('terbesar') || q.includes('konsentrasi')) {
+        const top3 = [...currentMonthData]
+          .filter(i => !classifyLoanItem_(i).isPaid)
+          .sort((a, b) => classifyLoanItem_(b).total - classifyLoanItem_(a).total)
+          .slice(0, 3);
+        if (!top3.length) return `Seluruh pinjaman pada periode <strong>${escapeHTML(periodLabel)}</strong> sudah berstatus Lunas.`;
+        const lines = top3.map((d, idx) => `${idx + 1}. <strong>${escapeHTML(d.nama)}</strong> — Tagihan Rp ${formatRupiah(classifyLoanItem_(d).total)} (${escapeHTML(d.sisa)})`);
+        return `<strong>3 Debitur Aktif Terbesar (${escapeHTML(periodLabel)}):</strong><br>${lines.join('<br>')}`;
+      }
+
+      if (q.includes('bagi hasil') || q.includes('sedekah') || q.includes('pengelola') || q.includes('darurat')) {
+        return `<strong>Proyeksi Alokasi Jasa 15% (${escapeHTML(periodLabel)}):</strong><br>• Total Jasa (15%): <strong>Rp ${formatRupiah(m.fee)}</strong><br>• Pengelola (10%): <strong>Rp ${formatRupiah(m.fee * (10 / 15))}</strong><br>• Sedekah (3%): <strong>Rp ${formatRupiah(m.fee * (3 / 15))}</strong><br>• Dana Darurat (2%): <strong>Rp ${formatRupiah(m.fee * (2 / 15))}</strong>`;
+      }
+
+      if (q.includes('plafon') || q.includes('batas') || q.includes('aman')) {
+        const safeCap = Math.max(0, Math.round((m.kembali - m.overdueNominal) * 0.7));
+        return `<strong>Estimasi Plafon Pinjaman Baru (${escapeHTML(periodLabel)}):</strong><br>• Dana Kembali (Lunas): <strong>Rp ${formatRupiah(m.kembali)}</strong><br>• Dana Tertahan Jatuh Tempo: <strong>Rp ${formatRupiah(m.overdueNominal)}</strong><br>• Batas Aman Penyaluran Baru (70% likuiditas bersih): <strong>Rp ${formatRupiah(safeCap)}</strong>`;
+      }
+
+      return `<strong>Audit Ringkas (${escapeHTML(periodLabel)}):</strong><br>• Total <strong>${currentMonthData.length}</strong> transaksi dengan modal keluar <strong>Rp ${formatRupiah(m.modal)}</strong>.<br>• Dana kembali: <strong>Rp ${formatRupiah(m.kembali)}</strong> (${m.countLunas} lunas, rasio ${m.returnPct}%).<br>• Piutang beredar: <strong>Rp ${formatRupiah(m.piutang)}</strong> (${m.countAman} aman, ${m.countTempo} jatuh tempo senilai Rp ${formatRupiah(m.overdueNominal)}).`;
+    }
+
+    function generateAIResponse(question) {
+      const historyBox = $('aiChatHistory');
+      const selected = $('monthFilter').value;
+      const periodLabel = selected === 'ALL' ? 'Semua Bulan' : `Bulan ${selected}`;
+      const loadId = 'ai-msg-' + Date.now();
+
+      historyBox.insertAdjacentHTML('beforeend', `
+        <div class="ai-msg user">${escapeHTML(question)}</div>
+        <div id="${loadId}" class="ai-msg bot" style="color:var(--text-muted);">Menganalisis data keuangan (${escapeHTML(periodLabel)})...</div>
+      `);
+      historyBox.scrollTop = historyBox.scrollHeight;
+      setAILoadingState(true);
+
+      const historySnapshot = [...aiConversationHistory];
+
+      google.script.run
+        .withSuccessHandler(res => {
+          setAILoadingState(false);
+          const el = $(loadId);
+          if (!el) return;
+          el.style.color = 'var(--text-primary)';
+
+          if (res && res.success && res.answer) {
+            aiConversationHistory.push({ role: 'user', text: question });
+            aiConversationHistory.push({ role: 'model', text: res.answer });
+            if (aiConversationHistory.length > 10) aiConversationHistory = aiConversationHistory.slice(-10);
+
+            const copyBtn = `<div style="margin-top:8px; display:flex; justify-content:flex-end;"><button type="button" class="btn btn-ghost btn-xs" style="height:26px; font-size:11px;" onclick="copyAITextResponse('${encodeURIComponent(res.answer)}')">Salin Jawaban</button></div>`;
+            el.innerHTML = formatAIMarkdown(res.answer) + copyBtn;
+          } else {
+            const fallbackHtml = buildLocalFallbackReply(question, periodLabel);
+            const reason = (res && res.message) ? res.message : 'Menggunakan analisis lokal.';
+            el.innerHTML = `${fallbackHtml}<div style="margin-top:7px; padding-top:6px; border-top:1px solid var(--border); font-size:11.5px; color:var(--izin-text);">Info Sistem: ${escapeHTML(reason)}</div>`;
+          }
+          historyBox.scrollTop = historyBox.scrollHeight;
+        })
+        .withFailureHandler(err => {
+          setAILoadingState(false);
+          const el = $(loadId);
+          if (el) {
+            el.style.color = 'var(--text-primary)';
+            el.innerHTML = `${buildLocalFallbackReply(question, periodLabel)}<div style="margin-top:7px; font-size:11.5px; color:var(--sakit-text);">Koneksi server terputus: ${escapeHTML(err && err.message ? err.message : 'Gagal terhubung')}</div>`;
+          }
+        })
+        .askGeminiFinanceAI(question, periodLabel, buildFinancialContextForGemini(), historySnapshot);
+    }
+
+    /* KUITANSI & PNG */
+    function openReceipt(itemStr) {
+      const item = JSON.parse(decodeURIComponent(itemStr));
+      const c = classifyLoanItem_(item);
+      const adminName = localStorage.getItem('gz_admin_name') || DEFAULT_CONFIG.adminName;
+      const adminSignature = localStorage.getItem('gz_admin_signature') || DEFAULT_CONFIG.adminSignature;
+      const brandTitle = localStorage.getItem('gz_brand_title') || DEFAULT_CONFIG.brandTitle;
+
+      if (originalReceiptHTML && !$('rcptNama')) {
+        $('receiptContent').innerHTML = originalReceiptHTML;
+        loadAdminConfig();
+      }
+
+      $('rcptNama').textContent = item.nama;
+      $('rcptBulan').textContent = item.bulan;
+      $('rcptTgl').textContent = item.tgl;
+      $('rcptCatatan').textContent = item.catatan || '-';
+      $('rcptNominalPinjaman').textContent = 'Rp ' + formatRupiah(c.pinjaman);
+      $('rcptFee').textContent = 'Rp ' + formatRupiah(c.fee15);
+      $('rcptTotalTagihan').textContent = 'Rp ' + formatRupiah(c.total);
+      $('rcptNoRef').textContent = `REF: #${String(item.no).padStart(3, '0')}/${String(item.bulan).substring(0, 3).toUpperCase()}`;
+      $('rcptPrintTime').textContent = 'Dicetak: ' + new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+      $('rcptAdminName').textContent = adminName;
+      $('receiptBrandTitle').textContent = brandTitle;
+      $('rcptSignatureContainer').innerHTML = `<img src="${adminSignature || defaultSignatureSVG}" alt="Tanda Tangan" style="max-height:46px; max-width:140px; object-fit:contain;">`;
+      openModalById('receiptModal');
+    }
+
+    function closeReceiptModal() {
+      closeModalById('receiptModal');
+      setTimeout(() => {
+        if (originalReceiptHTML) { $('receiptContent').innerHTML = originalReceiptHTML; loadAdminConfig(); }
+      }, 200);
+    }
+
+    function downloadReceiptPNG() {
+      const canvas = document.createElement('canvas');
+      const scale = 2;
+      canvas.width = 1100 * scale;
+      canvas.height = 1320 * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(scale, scale);
+
+      const margin = 60, innerX = margin + 45, innerW = 1100 - (margin * 2) - 90;
+      ctx.fillStyle = '#e4efe7'; ctx.fillRect(0, 0, 1100, 1320);
+      ctx.fillStyle = '#ffffff'; ctx.strokeStyle = '#c5dccb'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.roundRect(margin, margin, 1100 - margin * 2, 1320 - margin * 2, 24); ctx.fill(); ctx.stroke();
+
+      const logoImage = localStorage.getItem('gz_logo_image') || DEFAULT_CONFIG.logoImage;
+      const logoText = localStorage.getItem('gz_logo_text') || DEFAULT_CONFIG.logoText;
+      const brandTitle = localStorage.getItem('gz_brand_title') || DEFAULT_CONFIG.brandTitle;
+      const yStart = margin + 50;
+
+      const proceed = () => renderReceiptCanvasBody(canvas, ctx, yStart, innerX, innerW, brandTitle);
+      if (logoImage) {
+        const img = new Image();
+        img.onload = () => { ctx.drawImage(img, innerX, yStart, 64, 64); proceed(); };
+        img.onerror = () => { drawCanvasMonogram(ctx, innerX, yStart, logoText); proceed(); };
+        img.src = logoImage;
+      } else {
+        drawCanvasMonogram(ctx, innerX, yStart, logoText);
+        proceed();
+      }
+    }
+
+    function drawCanvasMonogram(ctx, x, y, text) {
+      ctx.fillStyle = '#10231b'; ctx.beginPath(); ctx.roundRect(x, y, 64, 64, 14); ctx.fill();
+      ctx.fillStyle = '#34d399'; ctx.font = '800 24px "Plus Jakarta Sans", sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(text, x + 32, y + 40); ctx.textAlign = 'left';
+    }
+
+    function renderReceiptCanvasBody(canvas, ctx, y, innerX, innerW, brandTitle) {
+      ctx.fillStyle = '#112218'; ctx.font = '800 28px "Plus Jakarta Sans", sans-serif'; ctx.fillText(brandTitle, innerX + 82, y + 28);
+      ctx.fillStyle = '#047857'; ctx.font = '700 14px "Plus Jakarta Sans", sans-serif'; ctx.fillText('BUKTI TRANSAKSI RESMI', innerX + 82, y + 52);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#547160'; ctx.font = '700 16px "Plus Jakarta Sans", sans-serif'; ctx.fillText($('rcptNoRef').textContent, innerX + innerW, y + 28);
+      ctx.font = '500 13px "Plus Jakarta Sans", sans-serif'; ctx.fillText($('rcptPrintTime').textContent, innerX + innerW, y + 50);
+      ctx.textAlign = 'left';
+
+      y += 95;
+      ctx.fillStyle = '#e8f8f0'; ctx.strokeStyle = '#a7f3d0'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(innerX, y, innerW, 46, 12); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#047857'; ctx.font = '700 15px "Plus Jakarta Sans", sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('KUITANSI BUKTI PINJAMAN & JASA LAYANAN (15%)', innerX + innerW / 2, y + 28); ctx.textAlign = 'left';
+
+      y += 70;
+      [['Nama Peminjam', $('rcptNama').textContent], ['Bulan Periode', $('rcptBulan').textContent], ['Tanggal Transaksi', $('rcptTgl').textContent], ['Catatan', $('rcptCatatan').textContent]].forEach(([lbl, val]) => {
+        ctx.fillStyle = '#edf5ef'; ctx.beginPath(); ctx.roundRect(innerX, y, innerW, 48, 11); ctx.fill();
+        ctx.fillStyle = '#547160'; ctx.font = '600 16px "Plus Jakarta Sans", sans-serif'; ctx.fillText(lbl, innerX + 18, y + 30);
+        ctx.textAlign = 'right'; ctx.fillStyle = '#112218'; ctx.font = '700 16px "Plus Jakarta Sans", sans-serif'; ctx.fillText(val, innerX + innerW - 18, y + 30);
+        ctx.textAlign = 'left'; y += 58;
+      });
+
+      y += 12;
+      ctx.fillStyle = '#10231b'; ctx.beginPath(); ctx.roundRect(innerX, y, innerW, 180, 18); ctx.fill();
+
+      let iy = y + 40;
+      ctx.fillStyle = '#96b3a3'; ctx.font = '600 16px "Plus Jakarta Sans", sans-serif'; ctx.fillText('Pokok Pinjaman', innerX + 26, iy);
+      ctx.textAlign = 'right'; ctx.fillStyle = '#ffffff'; ctx.font = '700 19px "Plus Jakarta Sans", sans-serif'; ctx.fillText($('rcptNominalPinjaman').textContent, innerX + innerW - 26, iy);
+
+      iy += 42; ctx.textAlign = 'left'; ctx.fillStyle = '#96b3a3'; ctx.fillText('Estimasi Jasa (15%)', innerX + 26, iy);
+      ctx.textAlign = 'right'; ctx.fillStyle = '#34d399'; ctx.fillText($('rcptFee').textContent, innerX + innerW - 26, iy);
+
+      iy += 24; ctx.strokeStyle = '#284d3d'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(innerX + 26, iy); ctx.lineTo(innerX + innerW - 26, iy); ctx.stroke();
+
+      iy += 40; ctx.textAlign = 'left'; ctx.fillStyle = '#f2f8f5'; ctx.font = '700 15px "Plus Jakarta Sans", sans-serif'; ctx.fillText('TOTAL KEWAJIBAN', innerX + 26, iy);
+      ctx.textAlign = 'right'; ctx.fillStyle = '#ffffff'; ctx.font = '800 26px "Plus Jakarta Sans", sans-serif'; ctx.fillText($('rcptTotalTagihan').textContent, innerX + innerW - 26, iy);
+
+      y += 215; ctx.textAlign = 'left'; ctx.fillStyle = '#547160'; ctx.font = '600 14px "Plus Jakarta Sans", sans-serif'; ctx.fillText('Status Verifikasi Sistem:', innerX, y);
+      ctx.fillStyle = '#047857'; ctx.font = '700 15px "Plus Jakarta Sans", sans-serif'; ctx.fillText('● Terhubung & Tervalidasi Aman', innerX, y + 24);
+
+      const adminName = localStorage.getItem('gz_admin_name') || DEFAULT_CONFIG.adminName;
+      const sigSource = localStorage.getItem('gz_admin_signature') || defaultSignatureSVG;
+      const boxW = 210, boxX = innerX + innerW - boxW, boxY = y - 20;
+
+      ctx.fillStyle = '#edf5ef'; ctx.strokeStyle = '#c5dccb'; ctx.beginPath(); ctx.roundRect(boxX, boxY, boxW, 110, 14); ctx.fill(); ctx.stroke();
+      ctx.textAlign = 'center'; ctx.fillStyle = '#547160'; ctx.font = '600 13px "Plus Jakarta Sans", sans-serif'; ctx.fillText('Disetujui Oleh,', boxX + boxW / 2, boxY + 20);
+
+      const nama = $('rcptNama').textContent;
+      const img = new Image();
+      img.onload = () => { ctx.drawImage(img, boxX + 25, boxY + 24, 160, 52); finalizeReceiptDownload(canvas, ctx, boxX, boxY, boxW, adminName, nama); };
+      img.onerror = () => finalizeReceiptDownload(canvas, ctx, boxX, boxY, boxW, adminName, nama);
+      img.src = sigSource;
+    }
+
+    async function shareReceiptFile() {
+      if (!latestReceiptBlob) return;
+      try {
+        const file = new File([latestReceiptBlob], latestReceiptFileName, { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: latestReceiptFileName });
+        } else {
+          showNotification('Info', 'Gunakan tombol Unduh Kuitansi PNG untuk menyimpan gambar.');
+        }
+      } catch (e) {}
+    }
+
+    function finalizeReceiptDownload(canvas, ctx, boxX, boxY, boxW, adminName, nama) {
+      ctx.strokeStyle = '#a3c4ad'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(boxX + 18, boxY + 78); ctx.lineTo(boxX + boxW - 18, boxY + 78); ctx.stroke();
+      ctx.fillStyle = '#112218'; ctx.font = '700 14px "Plus Jakarta Sans", sans-serif'; ctx.textAlign = 'center'; ctx.fillText(adminName, boxX + boxW / 2, boxY + 97);
+
+      canvas.toBlob(blob => {
+        latestReceiptBlob = blob;
+        const url = URL.createObjectURL(blob);
+        const safeName = nama.replace(/[^a-zA-Z0-9]/g, '_');
+        latestReceiptFileName = `Kuitansi_${safeName}.png`;
+        const canShareFiles = Boolean(navigator.canShare && navigator.share);
+
+        $('receiptContent').innerHTML = `
+          <div style="text-align:center; padding:24px 12px; display:flex; flex-direction:column; gap:10px; align-items:center;">
+            <span class="badge badge-hadir" style="padding:6px 14px; font-size:12.5px;">Kuitansi PNG Siap Diunduh</span>
+            <p style="font-size:13px; color:var(--text-secondary);">Simpan bukti transaksi ke penyimpanan perangkat atau bagikan langsung ke WhatsApp.</p>
+            <a href="${url}" download="${latestReceiptFileName}" class="btn btn-primary" style="width:100%; max-width:260px; text-decoration:none;">Unduh Kuitansi PNG</a>
+            ${canShareFiles ? `<button type="button" class="btn btn-sage" style="width:100%; max-width:260px;" onclick="shareReceiptFile()">Bagikan ke WhatsApp / Galeri</button>` : ''}
+          </div>
+        `;
+      }, 'image/png');
+    }
+
+    if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
+{
+  "name": "USAHA GEN Z — Enterprise Finance",
+  "short_name": "Usaha Gen Z",
+  "description": "Sistem Manajemen Keuangan, Pinjaman & Jasa Layanan",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#10231b",
+  "theme_color": "#10231b",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+const CACHE_NAME = 'usaha-gen-z-v1';
+const ASSETS = ['./', './index.html', './manifest.json'];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+  event.respondWith(
+    fetch(event.request).catch(() => caches.match(event.request))
+  );
+});
